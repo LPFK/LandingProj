@@ -3,14 +3,18 @@ import copy from "../content/copy.fr.json";
 const { founder } = copy;
 ---
 
-<section class="border-t border-border bg-surface">
-  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
-    <figure class="mx-auto max-w-3xl">
-      <h2 class="text-3xl text-ink sm:text-4xl">{founder.title}</h2>
-      <blockquote class="mt-6 text-lg leading-relaxed text-ink-muted">
-        {founder.body}
-      </blockquote>
-      <figcaption class="mt-6 font-[var(--font-display)] text-ink">{founder.signature}</figcaption>
-    </figure>
+<section class="section-light">
+  <div class="mx-auto grid max-w-[1000px] items-center gap-10 px-6 py-[var(--spacing-section-mobile)] md:grid-cols-[auto_1fr] md:py-[var(--spacing-section)]">
+    <div
+      class="mx-auto h-28 w-28 rounded-pill md:h-40 md:w-40"
+      style="background-image: var(--gradient-accent);"
+      aria-hidden="true"
+    >
+    </div>
+    <div>
+      <h2 class="text-3xl font-light text-ink sm:text-4xl">{founder.title}</h2>
+      <p class="mt-5 font-[var(--font-display)] text-lg leading-relaxed text-ink">{founder.body}</p>
+      <p class="mt-6 text-sm tracking-wide" style="color: var(--color-accent);">{founder.signature}</p>
+    </div>
   </div>
 </section>
