@@ -3,14 +3,14 @@ import copy from "../content/copy.fr.json";
 const { faq } = copy;
 ---
 
-<section id="faq" class="border-t border-border">
-  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
-    <h2 class="text-3xl text-ink sm:text-4xl">{faq.title}</h2>
+<section class="section-light">
+  <div class="mx-auto max-w-[820px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
+    <h2 class="text-3xl font-light text-ink sm:text-4xl">{faq.title}</h2>
 
-    <div class="mt-10 max-w-3xl divide-y divide-border">
+    <div class="mt-10 space-y-4">
       {
         faq.items.map((item) => (
-          <details class="group py-4">
+          <details class="glass glass-light group p-6">
             <summary class="flex cursor-pointer items-center justify-between gap-4 text-lg text-ink marker:content-none">
               <span>{item.q}</span>
               <span
