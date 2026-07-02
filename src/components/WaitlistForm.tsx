@@ -90,7 +90,7 @@ export default function WaitlistForm() {
     <form noValidate onSubmit={handleSubmit} className="rounded-card border border-border bg-surface p-6 sm:p-8">
       <div className="grid gap-5">
         <div>
-          <label htmlFor="first_name" className="block text-sm font-medium text-ink">
+          <label htmlFor="first_name" className="block text-sm font-medium text-ink-invert">
             {t.labels.firstName}
           </label>
           <input
@@ -113,7 +113,7 @@ export default function WaitlistForm() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-ink">
+          <label htmlFor="email" className="block text-sm font-medium text-ink-invert">
             {t.labels.email}
           </label>
           <input
@@ -136,7 +136,7 @@ export default function WaitlistForm() {
         </div>
 
         <fieldset aria-invalid={invalid("child_age_ranges")} aria-describedby={describedBy("child_age_ranges")}>
-          <legend className="text-sm font-medium text-ink">{t.labels.childAgeRanges}</legend>
+          <legend className="text-sm font-medium text-ink-invert">{t.labels.childAgeRanges}</legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {t.childAgeOptions.map((opt) => {
               const checked = ages.has(opt.value as ChildAgeRange);
@@ -145,9 +145,10 @@ export default function WaitlistForm() {
                   key={opt.value}
                   className={`cursor-pointer rounded-pill border px-4 py-2 text-sm transition-colors ${
                     checked
-                      ? "border-accent bg-accent text-surface"
-                      : "border-border bg-bg text-ink-muted"
+                      ? "border-transparent text-ink"
+                      : "border-[color:var(--hairline-gold)] text-ink-invert"
                   }`}
+                  style={checked ? { backgroundImage: "var(--gradient-accent)" } : undefined}
                 >
                   <input
                     type="checkbox"
@@ -171,7 +172,7 @@ export default function WaitlistForm() {
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor="postal_code" className="block text-sm font-medium text-ink">
+            <label htmlFor="postal_code" className="block text-sm font-medium text-ink-invert">
               {t.labels.postalCode}
             </label>
             <input
@@ -195,7 +196,7 @@ export default function WaitlistForm() {
           </div>
 
           <div>
-            <label htmlFor="referral_source" className="block text-sm font-medium text-ink">
+            <label htmlFor="referral_source" className="block text-sm font-medium text-ink-invert">
               {t.labels.referralSource}
             </label>
             <select
@@ -216,7 +217,7 @@ export default function WaitlistForm() {
         </div>
 
         <div>
-          <label className="flex items-start gap-3 text-sm text-ink-muted">
+          <label className="flex items-start gap-3 text-sm text-ink-muted-invert">
             <input
               type="checkbox"
               name="consent_marketing"
@@ -244,7 +245,8 @@ export default function WaitlistForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="rounded-pill bg-accent px-6 py-3 text-base font-medium text-surface shadow-soft transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+          style={{ backgroundImage: "var(--gradient-accent)" }}
+          className="rounded-pill px-6 py-3 text-base font-medium text-ink shadow-soft transition-transform hover:-translate-y-0.5 disabled:opacity-60"
         >
           {status === "submitting" ? t.submitting : t.submit}
         </button>
