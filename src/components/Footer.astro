@@ -1,29 +1,21 @@
 ---
 import copy from "../content/copy.fr.json";
-const { footer } = copy;
-const year = new Date().getFullYear();
+const { footer, nav } = copy;
 ---
 
-<footer class="border-t border-border bg-surface">
-  <div class="mx-auto flex max-w-[1200px] flex-col gap-6 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
+<footer class="section-dark border-t" style="border-color: var(--hairline-gold);">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-6 px-6 py-12 md:flex-row md:items-center md:justify-between">
     <div>
-      <p class="font-[var(--font-display)] text-lg text-ink">{footer.tagline}</p>
-      <p class="mt-2 text-sm text-ink-muted">
-        {footer.contactLabel} :
-        <a class="underline hover:text-accent" href={`mailto:${footer.contactEmail}`}>
-          {footer.contactEmail}
-        </a>
-      </p>
+      <p class="text-lg text-ink-invert" style="font-family: var(--font-display);">{nav.brand}</p>
+      <p class="mt-1 text-sm text-ink-muted-invert">{footer.tagline}</p>
     </div>
-
-    <nav aria-label="Liens légaux" class="flex flex-col gap-2 text-sm sm:text-right">
-      <a class="text-ink-muted underline hover:text-accent" href="/politique-de-confidentialite">
-        {footer.legal.privacy}
-      </a>
-      <a class="text-ink-muted underline hover:text-accent" href="/mentions-legales">
-        {footer.legal.mentions}
-      </a>
-      <span class="text-ink-muted">© {year}. {footer.copyright}</span>
+    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted-invert">
+      <a class="hover:text-ink-invert" href={`mailto:${footer.contactEmail}`}>{footer.contactLabel}</a>
+      <a class="hover:text-ink-invert" href="/politique-de-confidentialite">{footer.legal.privacy}</a>
+      <a class="hover:text-ink-invert" href="/mentions-legales">{footer.legal.mentions}</a>
     </nav>
+  </div>
+  <div class="mx-auto max-w-[1200px] px-6 pb-10 text-xs text-ink-muted-invert">
+    &copy; {new Date().getFullYear()} {nav.brand}. {footer.copyright}
   </div>
 </footer>
