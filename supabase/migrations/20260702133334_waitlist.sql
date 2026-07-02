@@ -29,3 +29,10 @@ alter table public.waitlist enable row level security;
 
 -- No policies are defined on purpose. RLS with no policy denies all access to
 -- anon and authenticated roles; the service role bypasses RLS entirely.
+
+-- service_role bypasses RLS but still needs table-level privileges; grant the
+-- DML the serverless endpoint uses (upsert = insert + update) plus select for
+-- later server-side querying. anon and authenticated are granted nothing, so
+-- they stay locked out even if RLS were ever relaxed (CLAUDE.md section 10).
+revoke all on public.waitlist from anon, authenticated;
+grant select, insert, update, delete on public.waitlist to service_role;
