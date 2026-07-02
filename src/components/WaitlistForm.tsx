@@ -87,7 +87,7 @@ export default function WaitlistForm() {
   const describedBy = (field: string) => (errors[field] ? `${field}-error` : undefined);
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="rounded-card border border-border bg-surface p-6 sm:p-8">
+    <form noValidate onSubmit={handleSubmit}>
       <div className="grid gap-5">
         <div>
           <label htmlFor="first_name" className="block text-sm font-medium text-ink-invert">
@@ -103,10 +103,10 @@ export default function WaitlistForm() {
             placeholder={t.placeholders.firstName}
             aria-invalid={invalid("first_name")}
             aria-describedby={describedBy("first_name")}
-            className="mt-1 w-full rounded-input border border-border bg-bg px-3 py-2 text-ink"
+            className="mt-1 w-full rounded-input border border-border bg-surface px-3 py-2 text-ink"
           />
           {errors.first_name && (
-            <p id="first_name-error" className="mt-1 text-sm text-accent">
+            <p id="first_name-error" className="mt-1 text-sm text-[#EBA891]">
               {errors.first_name}
             </p>
           )}
@@ -126,10 +126,10 @@ export default function WaitlistForm() {
             placeholder={t.placeholders.email}
             aria-invalid={invalid("email")}
             aria-describedby={describedBy("email")}
-            className="mt-1 w-full rounded-input border border-border bg-bg px-3 py-2 text-ink"
+            className="mt-1 w-full rounded-input border border-border bg-surface px-3 py-2 text-ink"
           />
           {errors.email && (
-            <p id="email-error" className="mt-1 text-sm text-accent">
+            <p id="email-error" className="mt-1 text-sm text-[#EBA891]">
               {errors.email}
             </p>
           )}
@@ -164,7 +164,7 @@ export default function WaitlistForm() {
             })}
           </div>
           {errors.child_age_ranges && (
-            <p id="child_age_ranges-error" className="mt-1 text-sm text-accent">
+            <p id="child_age_ranges-error" className="mt-1 text-sm text-[#EBA891]">
               {errors.child_age_ranges}
             </p>
           )}
@@ -186,10 +186,10 @@ export default function WaitlistForm() {
               placeholder={t.placeholders.postalCode}
               aria-invalid={invalid("postal_code")}
               aria-describedby={describedBy("postal_code")}
-              className="mt-1 w-full rounded-input border border-border bg-bg px-3 py-2 text-ink"
+              className="mt-1 w-full rounded-input border border-border bg-surface px-3 py-2 text-ink"
             />
             {errors.postal_code && (
-              <p id="postal_code-error" className="mt-1 text-sm text-accent">
+              <p id="postal_code-error" className="mt-1 text-sm text-[#EBA891]">
                 {errors.postal_code}
               </p>
             )}
@@ -204,7 +204,7 @@ export default function WaitlistForm() {
               name="referral_source"
               value={referral}
               onChange={(e) => setReferral(e.target.value)}
-              className="mt-1 w-full rounded-input border border-border bg-bg px-3 py-2 text-ink"
+              className="mt-1 w-full rounded-input border border-border bg-surface px-3 py-2 text-ink"
             >
               <option value="">{t.referralPlaceholder}</option>
               {t.referralOptions.map((opt) => (
@@ -217,7 +217,7 @@ export default function WaitlistForm() {
         </div>
 
         <div>
-          <label className="flex items-start gap-3 text-sm text-ink-muted-invert">
+          <label className="flex items-start gap-3 text-sm text-ink-invert">
             <input
               type="checkbox"
               name="consent_marketing"
@@ -230,14 +230,14 @@ export default function WaitlistForm() {
             <span>{copy.consent.v1}</span>
           </label>
           {errors.consent_marketing && (
-            <p id="consent_marketing-error" className="mt-1 text-sm text-accent">
+            <p id="consent_marketing-error" className="mt-1 text-sm text-[#EBA891]">
               {errors.consent_marketing}
             </p>
           )}
         </div>
 
         {status === "error" && (
-          <p role="alert" className="text-sm text-accent">
+          <p role="alert" className="text-sm text-[#EBA891]">
             {t.genericError}
           </p>
         )}
@@ -246,7 +246,7 @@ export default function WaitlistForm() {
           type="submit"
           disabled={status === "submitting"}
           style={{ backgroundImage: "var(--gradient-accent)" }}
-          className="rounded-pill px-6 py-3 text-base font-medium text-ink shadow-soft transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+          className="rounded-pill px-6 py-3 text-base font-semibold text-ink shadow-soft transition-transform hover:-translate-y-0.5 disabled:opacity-60"
         >
           {status === "submitting" ? t.submitting : t.submit}
         </button>
