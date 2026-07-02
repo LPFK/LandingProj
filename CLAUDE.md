@@ -50,12 +50,25 @@ Palette (edit here if changed):
 Role | Token | Value
 Base background | `--color-bg` | `#FBF7F2` (warm off-white)
 Surface | `--color-surface` | `#FFFFFF`
+Espresso (dark section background) | `--color-espresso` | `#1E1A17`
+Espresso soft | `--color-espresso-soft` | `#2A2521`
 Ink primary | `--color-ink` | `#1E1A17` (near-black warm)
+Ink inverted (on dark sections) | `--color-ink-invert` | `#F4EDE4`
 Ink muted | `--color-ink-muted` | `#6B615A`
+Ink muted inverted | `--color-ink-muted-invert` | `#B7A99B`
 Accent primary | `--color-accent` | `#C46A3A` (warm terracotta)
-Accent secondary | `--color-accent-soft` | `#E8C9B0`
+Accent gold | `--color-accent-gold` | `#D89A5E`
 Success | `--color-success` | `#3F7A5E`
 Border | `--color-border` | `#E6DED3`
+
+Glass tokens (used by `.glass`, `.glass-dark`, `.glass-light` utilities):
+
+Role | Token | Value
+Gradient accent | `--gradient-accent` | `linear-gradient(135deg, #C46A3A, #D89A5E)`
+Hairline border | `--hairline-gold` | `rgba(216, 154, 94, 0.35)`
+Glass dark fill | `--glass-dark-fill` | `rgba(255, 255, 255, 0.06)`
+Glass light fill | `--glass-light-fill` | `rgba(255, 255, 255, 0.55)`
+Glass blur | `--glass-blur` | `blur(20px) saturate(140%)`
 
 Typography:
 
@@ -67,7 +80,9 @@ Layout | 12-column responsive grid, max content width 1200 px, section vertical 
 
 Radius | 12 px on cards, 999 px on pills, 8 px on inputs.
 
-Shadow | one soft elevation `0 10px 30px rgba(30, 26, 23, 0.08)`. Do not stack shadows.
+Shadow | one soft elevation `0 10px 30px rgba(30, 26, 23, 0.08)` (`--shadow-soft`). Do not stack shadows.
+
+Glass elevation may use `--shadow-glass` in addition to `--shadow-soft`; this is the single documented exception to the one-shadow rule.
 
 Motion | fade-in-up 400 ms with 40 ms stagger on section entry. Respect `prefers-reduced-motion`.
 
@@ -81,6 +96,7 @@ Section | Purpose
 Hero | one-line promise, sub-hero clarifier, primary CTA to the form, quiet product visual
 How it works | three steps, illustrated. Sign up | Receive curated pairs | Grow together
 Why it exists | short editorial block on foot health and parent load
+Product showcase | editorial gallery of curated pairs, materials callouts, placeholder imagery until photography is supplied
 Product quality | materials, French curation, ethical manufacture. Evidence-based, no vague claims
 Founder note | one paragraph, first person, signed
 Waitlist form | headline, name, email, child age range multi-select, optional postal code, consent checkbox, submit
@@ -97,6 +113,8 @@ Voice guide:
 
 Do | short sentences, present tense, concrete nouns, honest tone
 Don't | slogans in English, exclamation marks stacked, emoji, corporate jargon, urgency scarcity manipulation
+
+Register leans to exclusivity and membership (cercle fondateur, acces anticipe, curation). Exclusivity is conveyed through restraint and specificity, never through hype or fake scarcity.
 
 Legal | RGPD-compliant. Consent checkbox with explicit language. Link to a `politique-de-confidentialite` page (stub is acceptable at first pass, flag as `TODO_LEGAL`).
 
@@ -247,7 +265,7 @@ Before declaring any task complete:
 Track these here. When a decision is made, replace the row with the resolution and date.
 
 Topic | Status
-Final brand name and logo | open
+Final brand name and logo | resolved: Pazapas, 2026-07-02
 Domain and hosting account | open
 Confirmation email sender identity | open
 Whether to add a referral capture beyond `referral_source` | open

@@ -9,7 +9,7 @@ const { footer, nav } = copy;
       <p class="text-lg text-ink-invert" style="font-family: var(--font-display);">{nav.brand}</p>
       <p class="mt-1 text-sm text-ink-muted-invert">{footer.tagline}</p>
     </div>
-    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted-invert">
+    <nav aria-label="Liens légaux" class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted-invert">
       <a class="hover:text-ink-invert" href={`mailto:${footer.contactEmail}`}>{footer.contactLabel}</a>
       <a class="hover:text-ink-invert" href="/politique-de-confidentialite">{footer.legal.privacy}</a>
       <a class="hover:text-ink-invert" href="/mentions-legales">{footer.legal.mentions}</a>

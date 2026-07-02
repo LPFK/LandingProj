@@ -186,9 +186,9 @@
     "copyright": "Tous droits réservés."
   },
   "email": {
-    "subject": "Vous êtes sur la liste d'attente",
-    "heading": "Merci, vous êtes inscrit.",
-    "body": "Nous avons bien reçu votre inscription à la liste d'attente. Nous vous écrirons dès que le service ouvre, avec les détails des formules et de la première sélection. À bientôt.",
-    "signature": "L'équipe"
+    "subject": "Votre demande au cercle fondateur est bien reçue",
+    "heading": "Votre demande est enregistrée.",
+    "body": "Nous avons bien reçu votre demande d'accès au cercle fondateur. Nous vous écrirons à l'ouverture de votre vague, avec le détail de la collection et des formules. À bientôt.",
+    "signature": "L'équipe Pazapas"
   }
 }
