@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" width="600" height="480" role="img" aria-label="Placeholder produit">
+  <rect width="600" height="480" fill="#efe6da"/>
+  <ellipse cx="300" cy="410" rx="190" ry="26" fill="#d89a5e" opacity="0.25"/>
+  <path d="M160 360c10-40 70-52 130-52 46 0 78 22 120 22 44 0 60 20 60 38 0 16-14 24-40 24H188c-26 0-34-40-28-72z" fill="#b98a4e" opacity="0.9"/>
+  <circle cx="410" cy="330" r="10" fill="#fcf4f0"/>
+</svg>
