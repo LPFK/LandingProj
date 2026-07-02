@@ -3,33 +3,42 @@ import copy from "../content/copy.fr.json";
 const { hero } = copy;
 ---
 
-<section class="relative overflow-hidden">
-  <div class="mx-auto grid max-w-[1200px] items-center gap-12 px-6 py-[var(--spacing-section-mobile)] md:grid-cols-2 md:py-[var(--spacing-section)]">
+<section class="section-dark grain relative overflow-hidden">
+  <div
+    class="pointer-events-none absolute -right-32 -top-32 h-[36rem] w-[36rem] rounded-full opacity-40 blur-3xl"
+    style="background: radial-gradient(closest-side, rgba(216,154,94,0.35), transparent 70%);"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative mx-auto grid max-w-[1200px] items-center gap-12 px-6 py-[var(--spacing-section-mobile)] md:grid-cols-2 md:py-[var(--spacing-section)]">
     <div class="fade-in-up">
-      <p class="mb-4 inline-block rounded-pill border border-border bg-surface px-3 py-1 text-sm text-ink-muted">
+      <p class="mb-5 inline-block rounded-pill border border-[color:var(--hairline-gold)] px-4 py-1.5 text-sm tracking-wide text-ink-muted-invert">
         {hero.eyebrow}
       </p>
-      <h1 class="text-4xl text-ink sm:text-5xl">{hero.title}</h1>
-      <p class="mt-6 max-w-prose text-lg text-ink-muted">{hero.subtitle}</p>
-      <div class="mt-8 flex flex-wrap items-center gap-4">
+      <h1 class="text-4xl font-light leading-[1.1] text-ink-invert sm:text-5xl lg:text-6xl">{hero.title}</h1>
+      <p class="mt-6 max-w-prose text-lg text-ink-muted-invert">{hero.subtitle}</p>
+      <div class="glass glass-dark mt-8 flex flex-wrap items-center gap-4 p-4">
         <a
           href="#waitlist"
-          class="rounded-pill bg-accent px-6 py-3 text-base font-medium text-surface shadow-soft transition-transform hover:-translate-y-0.5"
+          class="rounded-pill px-6 py-3 text-base font-medium text-ink shadow-soft transition-transform hover:-translate-y-0.5"
+          style="background-image: var(--gradient-accent);"
         >
           {hero.cta}
         </a>
-        <span class="text-sm text-ink-muted">{hero.reassurance}</span>
+        <span class="text-sm text-ink-muted-invert">{hero.reassurance}</span>
       </div>
     </div>
 
     <div class="fade-in-up flex justify-center md:justify-end">
-      <img
-        src="/images/pazapas-tile-terracotta.svg"
-        alt={hero.visualAlt}
-        width="400"
-        height="400"
-        class="h-auto w-full max-w-sm"
-      />
+      <div class="glass glass-dark p-6">
+        <img
+          src="/images/pazapas-tile-terracotta.svg"
+          alt={hero.visualAlt}
+          width="400"
+          height="400"
+          class="h-auto w-full max-w-sm rounded-[12px]"
+        />
+      </div>
     </div>
   </div>
 </section>
