@@ -32,26 +32,32 @@ in local development to keep the analytics script off.
 
 ## Supabase table
 
-Run this in the Supabase SQL editor. Row-level security is enabled and no anon
-policy is added, so only the service role (used server-side in the endpoint)
-can insert.
+The schema is a versioned migration at
+`supabase/migrations/20260702133334_waitlist.sql`. Row-level security is enabled
+with no anon/authenticated policy, so only the service role (used server-side in
+the endpoint) can read or write. Apply it by one of:
 
-```sql
-create table if not exists public.waitlist (
-  id uuid primary key default gen_random_uuid(),
-  created_at timestamptz not null default now(),
-  first_name text not null,
-  email text not null unique,
-  child_age_ranges text[] not null,
-  postal_code text,
-  referral_source text,
-  consent_marketing boolean not null,
-  consent_version text not null
-);
+- Local dev database (needs Docker Desktop running):
 
-alter table public.waitlist enable row level security;
--- No policies for anon/authenticated: only the service role bypasses RLS.
-```
+  ```bash
+  npx supabase start        # boots Postgres and applies migrations, prints keys
+  ```
+
+  `.env` is pre-filled with the CLI's standard local keys, so the app works
+  against local Supabase once `start` is up.
+
+- Cloud project (needs the Supabase CLI logged in):
+
+  ```bash
+  npx supabase link --project-ref <your-ref>
+  npx supabase db push
+  ```
+
+- Manual: paste the contents of the migration file into the dashboard SQL
+  editor and run it.
+
+After applying to cloud, set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE` in
+`.env` from Supabase dashboard > Project Settings > API.
 
 ## Form contract
 
