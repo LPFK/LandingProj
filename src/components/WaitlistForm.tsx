@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type SyntheticEvent } from "react";
 import { waitlistSchema, type ChildAgeRange } from "../lib/validation";
 import copy from "../content/copy.fr.json";
 
@@ -31,7 +31,7 @@ export default function WaitlistForm() {
     });
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("submitting");
 
