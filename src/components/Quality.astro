@@ -1,32 +1,23 @@
 ---
 import copy from "../content/copy.fr.json";
-import { Leaf, MapPin, Factory } from "lucide-astro";
 
 const { quality } = copy;
-const icons = [Leaf, MapPin, Factory];
 ---
 
-<section class="border-t border-border">
-  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
+<section class="section-dark grain relative">
+  <div class="relative mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
     <div class="max-w-2xl">
-      <h2 class="text-3xl text-ink sm:text-4xl">{quality.title}</h2>
-      <p class="mt-3 text-lg text-ink-muted">{quality.subtitle}</p>
+      <h2 class="text-3xl font-light text-ink-invert sm:text-4xl">{quality.title}</h2>
+      <p class="mt-3 text-lg text-ink-muted-invert">{quality.subtitle}</p>
     </div>
-
-    <div class="mt-12 grid gap-8 md:grid-cols-3">
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
       {
-        quality.points.map((point, i) => {
-          const Icon = icons[i];
-          return (
-            <article class="rounded-card border border-border bg-surface p-6">
-              <span class="flex h-11 w-11 items-center justify-center rounded-pill bg-accent-soft text-accent">
-                <Icon size={22} aria-hidden="true" />
-              </span>
-              <h3 class="mt-4 text-xl text-ink">{point.title}</h3>
-              <p class="mt-2 text-ink-muted">{point.body}</p>
-            </article>
-          );
-        })
+        quality.points.map((point) => (
+          <article class="glass glass-dark fade-in-up p-7">
+            <h3 class="text-xl text-ink-invert">{point.title}</h3>
+            <p class="mt-2 text-ink-muted-invert">{point.body}</p>
+          </article>
+        ))
       }
     </div>
   </div>
