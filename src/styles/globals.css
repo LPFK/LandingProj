@@ -12,10 +12,14 @@
 @theme {
   --color-bg: #fbf7f2;
   --color-surface: #ffffff;
+  --color-espresso: #1e1a17;
+  --color-espresso-soft: #2a2521;
   --color-ink: #1e1a17;
+  --color-ink-invert: #f4ede4;
   --color-ink-muted: #6b615a;
+  --color-ink-muted-invert: #b7a99b;
   --color-accent: #c46a3a;
-  --color-accent-soft: #e8c9b0;
+  --color-accent-gold: #d89a5e;
   --color-success: #3f7a5e;
   --color-border: #e6ded3;
 
@@ -23,10 +27,11 @@
   --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
   --radius-input: 8px;
-  --radius-card: 12px;
+  --radius-card: 16px;
   --radius-pill: 999px;
 
   --shadow-soft: 0 10px 30px rgba(30, 26, 23, 0.08);
+  --shadow-glass: 0 20px 50px rgba(30, 26, 23, 0.28);
 
   --spacing-section: 96px;
   --spacing-section-mobile: 64px;
@@ -83,6 +88,80 @@
 }
 
 @layer components {
+  :root {
+    --gradient-accent: linear-gradient(135deg, #c46a3a, #d89a5e);
+    --hairline-gold: rgba(216, 154, 94, 0.35);
+    --glass-dark-fill: rgba(255, 255, 255, 0.06);
+    --glass-light-fill: rgba(255, 255, 255, 0.55);
+    --glass-blur: blur(20px) saturate(140%);
+  }
+
+  .section-dark {
+    background-color: var(--color-espresso);
+    color: var(--color-ink-invert);
+  }
+
+  .section-light {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+  }
+
+  /* Frosted glass panel. Text must sit on the fill, never on live blur alone. */
+  .glass {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--hairline-gold);
+    box-shadow: var(--shadow-glass);
+    position: relative;
+    isolation: isolate;
+  }
+
+  .glass-dark {
+    background-color: var(--glass-dark-fill);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+
+  .glass-light {
+    background-color: var(--glass-light-fill);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+
+  /* Top specular sheen. */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0) 40%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Fallback when backdrop-filter is unsupported: solid warm panels. */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-dark {
+      background-color: var(--color-espresso-soft);
+    }
+    .glass-light {
+      background-color: var(--color-surface);
+    }
+  }
+
+  /* Subtle grain for tactility, applied to dark sections. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
   /* Section entry animation, section 4. Guarded by reduced-motion above. */
   .fade-in-up {
     animation: fade-in-up 400ms ease-out both;
