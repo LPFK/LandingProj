@@ -1,0 +1,114 @@
+/* Font faces first: fontsource variable imports must precede other rules. */
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/inter";
+
+@import "tailwindcss";
+
+/*
+ * Design tokens (CLAUDE.md section 4). Tailwind v4 reads these from @theme and
+ * exposes matching utilities (bg-bg, text-ink, rounded-card, shadow-soft, etc).
+ * Edit tokens here, not in tailwind.config.mjs.
+ */
+@theme {
+  --color-bg: #fbf7f2;
+  --color-surface: #ffffff;
+  --color-ink: #1e1a17;
+  --color-ink-muted: #6b615a;
+  --color-accent: #c46a3a;
+  --color-accent-soft: #e8c9b0;
+  --color-success: #3f7a5e;
+  --color-border: #e6ded3;
+
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-input: 8px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 10px 30px rgba(30, 26, 23, 0.08);
+
+  --spacing-section: 96px;
+  --spacing-section-mobile: 64px;
+
+  --breakpoint-*: initial;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 90rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Respect reduced-motion: disable smooth scroll and transitions/animations. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Section entry animation, section 4. Guarded by reduced-motion above. */
+  .fade-in-up {
+    animation: fade-in-up 400ms ease-out both;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Visually hidden but available to screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

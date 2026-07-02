@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+
+export const prerender = true;
+
+const title = "Mentions légales";
+---
+
+<Base title={`${title} | liste d'attente`} description="Mentions légales du service.">
+  <main id="contenu" class="mx-auto max-w-[720px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
+    <h1 class="text-3xl text-ink sm:text-4xl">{title}</h1>
+
+    {/* TODO_LEGAL: compléter l'éditeur, l'hébergeur et le directeur de publication. */}
+    <div class="mt-8 space-y-4 text-ink-muted">
+      <p>Contenu provisoire, à compléter avant l'ouverture du service.</p>
+      <h2 class="text-xl text-ink">Éditeur</h2>
+      <p>Raison sociale, forme juridique, capital, RCS et adresse à renseigner.</p>
+      <h2 class="text-xl text-ink">Hébergeur</h2>
+      <p>Nom et adresse de l'hébergeur à renseigner.</p>
+      <h2 class="text-xl text-ink">Directeur de la publication</h2>
+      <p>Nom à renseigner.</p>
+    </div>
+
+    <p class="mt-10">
+      <a class="text-accent underline" href="/">Retour à l'accueil</a>
+    </p>
+  </main>
+  <Footer />
+</Base>

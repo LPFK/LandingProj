@@ -1,0 +1,39 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+
+export const prerender = true;
+
+const title = "Politique de confidentialité";
+---
+
+<Base title={`${title} | liste d'attente`} description="Politique de confidentialité et traitement des données RGPD.">
+  <main id="contenu" class="mx-auto max-w-[720px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
+    <h1 class="text-3xl text-ink sm:text-4xl">{title}</h1>
+
+    {/* TODO_LEGAL: remplacer ce contenu par un texte validé juridiquement. */}
+    <div class="mt-8 space-y-4 text-ink-muted">
+      <p>
+        Cette page décrit le traitement de vos données dans le cadre de la liste d'attente. Le
+        contenu ci-dessous est provisoire et doit être validé avant l'ouverture du service.
+      </p>
+      <h2 class="text-xl text-ink">Données collectées</h2>
+      <p>
+        Prénom, adresse e-mail, tranches d'âge de l'enfant, code postal facultatif et source de
+        connaissance facultative. Ces données servent uniquement à vous prévenir de l'ouverture.
+      </p>
+      <h2 class="text-xl text-ink">Conservation et localisation</h2>
+      <p>Les données sont conservées dans l'Union européenne et ne sont pas revendues.</p>
+      <h2 class="text-xl text-ink">Vos droits</h2>
+      <p>
+        Vous pouvez demander l'accès, la rectification ou la suppression de vos données à tout
+        moment en écrivant à l'adresse de contact indiquée en pied de page.
+      </p>
+    </div>
+
+    <p class="mt-10">
+      <a class="text-accent underline" href="/">Retour à l'accueil</a>
+    </p>
+  </main>
+  <Footer />
+</Base>

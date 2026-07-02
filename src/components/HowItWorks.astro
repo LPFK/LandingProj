@@ -1,0 +1,36 @@
+---
+import copy from "../content/copy.fr.json";
+import { UserPlus, Package, TrendingUp } from "lucide-astro";
+
+const { howItWorks } = copy;
+const icons = [UserPlus, Package, TrendingUp];
+---
+
+<section class="border-t border-border">
+  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl text-ink sm:text-4xl">{howItWorks.title}</h2>
+      <p class="mt-3 text-lg text-ink-muted">{howItWorks.subtitle}</p>
+    </div>
+
+    <ol class="mt-12 grid gap-8 md:grid-cols-3">
+      {
+        howItWorks.steps.map((step, i) => {
+          const Icon = icons[i];
+          return (
+            <li class="rounded-card border border-border bg-surface p-6">
+              <span class="flex h-11 w-11 items-center justify-center rounded-pill bg-accent-soft text-accent">
+                <Icon size={22} aria-hidden="true" />
+              </span>
+              <h3 class="mt-4 text-xl text-ink">
+                <span class="mr-1 text-ink-muted">{i + 1}.</span>
+                {step.title}
+              </h3>
+              <p class="mt-2 text-ink-muted">{step.body}</p>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</section>

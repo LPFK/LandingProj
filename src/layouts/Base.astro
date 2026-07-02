@@ -1,0 +1,49 @@
+---
+import "../styles/globals.css";
+import copy from "../content/copy.fr.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = copy.meta.title, description = copy.meta.description } = Astro.props;
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={copy.meta.ogTitle} />
+    <meta property="og:description" content={copy.meta.ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {
+      plausibleDomain && (
+        <script
+          is:inline
+          defer
+          data-domain={plausibleDomain}
+          src="https://plausible.io/js/script.js"
+        />
+      )
+    }
+  </head>
+  <body>
+    <a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-input focus:bg-surface focus:px-4 focus:py-2 focus:text-ink">
+      {copy.nav.skipToContent}
+    </a>
+    <slot />
+  </body>
+</html>

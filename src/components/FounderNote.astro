@@ -1,0 +1,16 @@
+---
+import copy from "../content/copy.fr.json";
+const { founder } = copy;
+---
+
+<section class="border-t border-border bg-surface">
+  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
+    <figure class="mx-auto max-w-3xl">
+      <h2 class="text-3xl text-ink sm:text-4xl">{founder.title}</h2>
+      <blockquote class="mt-6 text-lg leading-relaxed text-ink-muted">
+        {founder.body}
+      </blockquote>
+      <figcaption class="mt-6 font-[var(--font-display)] text-ink">{founder.signature}</figcaption>
+    </figure>
+  </div>
+</section>

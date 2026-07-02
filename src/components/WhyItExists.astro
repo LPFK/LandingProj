@@ -1,0 +1,13 @@
+---
+import copy from "../content/copy.fr.json";
+const { why } = copy;
+---
+
+<section class="border-t border-border bg-surface">
+  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl text-ink sm:text-4xl">{why.title}</h2>
+      {why.body.map((para) => <p class="mt-6 text-lg leading-relaxed text-ink-muted">{para}</p>)}
+    </div>
+  </div>
+</section>

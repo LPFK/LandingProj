@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "title": "Des chaussures à la bonne pointure, à la bonne cadence",
+    "description": "Un abonnement de chaussures en cuir pour enfants de 0 à 7 ans. La bonne pointure, livrée au bon rythme, sans y penser. Rejoignez la liste d'attente.",
+    "ogTitle": "L'abonnement chaussures qui grandit avec votre enfant",
+    "ogDescription": "Des paires curées, à la bonne pointure, livrées au bon moment. Inscrivez-vous à la liste d'attente."
+  },
+  "nav": {
+    "brand": "Marque",
+    "skipToContent": "Aller au contenu",
+    "cta": "Rejoindre la liste"
+  },
+  "hero": {
+    "eyebrow": "Bientôt disponible",
+    "title": "Les bonnes chaussures, à la bonne pointure, au bon moment.",
+    "subtitle": "Un abonnement de chaussures en cuir pour les enfants de 0 à 7 ans. Nous curons chaque paire et l'expédions quand le pied a grandi, sans que vous ayez à y penser.",
+    "cta": "Rejoindre la liste d'attente",
+    "reassurance": "Sans engagement pour le moment. Nous vous préviendrons à l'ouverture.",
+    "visualAlt": "Illustration géométrique évoquant une paire de chaussures"
+  },
+  "howItWorks": {
+    "title": "Comment ça marche",
+    "subtitle": "Trois étapes, puis plus rien à gérer.",
+    "steps": [
+      {
+        "title": "Vous vous inscrivez",
+        "body": "Vous nous indiquez l'âge de votre enfant et vos préférences. Nous préparons son profil de pointure."
+      },
+      {
+        "title": "Vous recevez des paires curées",
+        "body": "Nos sélections arrivent chez vous, choisies pour la santé du pied et la qualité du cuir."
+      },
+      {
+        "title": "Vous grandissez ensemble",
+        "body": "À chaque poussée de croissance, la pointure suivante arrive au bon moment. Vous ne cherchez plus."
+      }
+    ]
+  },
+  "why": {
+    "title": "Pourquoi cet abonnement existe",
+    "body": [
+      "Un pied d'enfant grandit vite et change de pointure plusieurs fois par an. Une chaussure trop petite gêne la marche et la posture, une chaussure trop grande aussi.",
+      "Entre les magasins, les tailles qui varient d'une marque à l'autre et le temps qui manque, choisir devient une charge. Nous prenons cette charge en respectant le pied qui grandit."
+    ]
+  },
+  "quality": {
+    "title": "Ce que nous mettons dans chaque paire",
+    "subtitle": "Des choix concrets, pas des promesses vagues.",
+    "points": [
+      {
+        "title": "Cuir tanné avec soin",
+        "body": "Des cuirs souples et respirants, sélectionnés pour durer une saison de croissance sans blesser le pied."
+      },
+      {
+        "title": "Curation française",
+        "body": "Chaque modèle est choisi en France selon des critères de santé du pied et de tenue dans le temps."
+      },
+      {
+        "title": "Fabrication responsable",
+        "body": "Une fabrication européenne, dans des ateliers identifiés, avec une traçabilité que nous documenterons à l'ouverture."
+      }
+    ]
+  },
+  "founder": {
+    "title": "Un mot de la fondatrice",
+    "body": "J'ai créé ce service parce que j'ai passé trop de samedis à chercher la bonne pointure, entre deux tailles et deux marques qui ne tombent jamais pareil. Je voulais que le bon soulier arrive au bon moment, choisi avec le même soin que si je le faisais pour mon propre enfant. C'est la promesse que nous tenons, paire après paire.",
+    "signature": "La fondatrice"
+  },
+  "waitlist": {
+    "title": "Rejoignez la liste d'attente",
+    "subtitle": "Vous serez parmi les premiers prévenus à l'ouverture. Pas de spam, pas de revente de vos données.",
+    "labels": {
+      "firstName": "Prénom",
+      "email": "Adresse e-mail",
+      "childAgeRanges": "Âge de votre enfant",
+      "postalCode": "Code postal (facultatif)",
+      "referralSource": "Comment nous avez-vous connus ? (facultatif)",
+      "consentMarketing": "J'accepte de recevoir des informations sur l'ouverture du service."
+    },
+    "placeholders": {
+      "firstName": "Camille",
+      "email": "vous@exemple.fr",
+      "postalCode": "75011"
+    },
+    "childAgeOptions": [
+      { "value": "0-12m", "label": "0 à 12 mois" },
+      { "value": "12-24m", "label": "12 à 24 mois" },
+      { "value": "2-3y", "label": "2 à 3 ans" },
+      { "value": "3-5y", "label": "3 à 5 ans" },
+      { "value": "5-7y", "label": "5 à 7 ans" }
+    ],
+    "referralOptions": [
+      { "value": "instagram", "label": "Instagram" },
+      { "value": "friend", "label": "Bouche à oreille" },
+      { "value": "search", "label": "Recherche en ligne" },
+      { "value": "other", "label": "Autre" }
+    ],
+    "referralPlaceholder": "Choisissez une réponse",
+    "submit": "Je rejoins la liste",
+    "submitting": "Envoi en cours",
+    "successTitle": "C'est noté, merci.",
+    "successBody": "Vous êtes sur la liste. Nous vous écrirons dès que le service ouvre.",
+    "genericError": "Un souci est survenu de notre côté. Merci de réessayer dans un instant.",
+    "errors": {
+      "firstName": "Merci d'indiquer un prénom.",
+      "email": "Merci d'indiquer une adresse e-mail valide.",
+      "childAgeRanges": "Merci de choisir au moins une tranche d'âge.",
+      "postalCode": "Le code postal doit contenir 5 chiffres.",
+      "consentMarketing": "Votre accord est nécessaire pour rejoindre la liste."
+    }
+  },
+  "consent": {
+    "v1": "J'accepte de recevoir par e-mail des informations sur l'ouverture du service. Mes données sont conservées dans l'Union européenne, ne sont pas revendues, et je peux demander leur suppression à tout moment."
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Le service est-il déjà disponible ?",
+        "a": "Pas encore. Nous construisons la liste d'attente pour ouvrir auprès des premières familles intéressées. Vous serez prévenu par e-mail."
+      },
+      {
+        "q": "Comment la pointure est-elle choisie ?",
+        "a": "À l'inscription, vous indiquez l'âge de l'enfant. À l'ouverture, nous affinerons la mesure du pied pour envoyer la bonne pointure au bon moment."
+      },
+      {
+        "q": "Combien de paires par an ?",
+        "a": "La cadence sera adaptée à la croissance de l'enfant. Le détail des formules sera communiqué à l'ouverture."
+      },
+      {
+        "q": "Puis-je arrêter quand je veux ?",
+        "a": "Oui. L'abonnement sera sans engagement de durée. Les conditions précises seront disponibles au lancement."
+      },
+      {
+        "q": "Que faites-vous de mes données ?",
+        "a": "Vos données sont conservées dans l'Union européenne, servent uniquement à vous contacter au sujet du service, et ne sont jamais revendues. Vous pouvez demander leur suppression à tout moment."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Des chaussures qui grandissent avec votre enfant.",
+    "contactLabel": "Nous écrire",
+    "contactEmail": "contact@exemple.fr",
+    "legal": {
+      "privacy": "Politique de confidentialité",
+      "mentions": "Mentions légales"
+    },
+    "copyright": "Tous droits réservés."
+  },
+  "email": {
+    "subject": "Vous êtes sur la liste d'attente",
+    "heading": "Merci, vous êtes inscrit.",
+    "body": "Nous avons bien reçu votre inscription à la liste d'attente. Nous vous écrirons dès que le service ouvre, avec les détails des formules et de la première sélection. À bientôt.",
+    "signature": "L'équipe"
+  }
+}
