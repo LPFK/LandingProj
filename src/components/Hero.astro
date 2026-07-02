@@ -23,24 +23,13 @@ const { hero } = copy;
     </div>
 
     <div class="fade-in-up flex justify-center md:justify-end">
-      <!-- Placeholder editorial visual: soft geometric SVG in accent-soft. -->
-      <svg
-        role="img"
-        aria-label={hero.visualAlt}
-        viewBox="0 0 400 400"
+      <img
+        src="/images/pazapas-tile-terracotta.svg"
+        alt={hero.visualAlt}
+        width="400"
+        height="400"
         class="h-auto w-full max-w-sm"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <title>{hero.visualAlt}</title>
-        <rect width="400" height="400" rx="24" fill="var(--color-accent-soft)" />
-        <circle cx="200" cy="170" r="90" fill="var(--color-surface)" opacity="0.85" />
-        <path
-          d="M120 250c30-20 130-20 160 0 20 14 20 40-10 46-40 8-100 8-140 0-30-6-30-32-10-46z"
-          fill="var(--color-accent)"
-          opacity="0.9"
-        />
-        <rect x="150" y="120" width="100" height="60" rx="16" fill="var(--color-accent)" opacity="0.35" />
-      </svg>
+      />
     </div>
   </div>
 </section>
