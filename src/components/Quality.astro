@@ -1,33 +1,58 @@
 ---
 import copy from "../content/copy.fr.json";
-import { Leaf, MapPin, Factory } from "lucide-astro";
-
-const { quality } = copy;
-const icons = [Leaf, MapPin, Factory];
 ---
 
-<section class="border-t border-border">
-  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
-    <div class="max-w-2xl">
-      <h2 class="text-3xl text-ink sm:text-4xl">{quality.title}</h2>
-      <p class="mt-3 text-lg text-ink-muted">{quality.subtitle}</p>
+<section style="padding:128px 24px;background:var(--color-bg);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:72px;">
+      <p
+        style="font-size:0.8125rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);margin-bottom:16px;"
+      >
+        {copy.quality.eyebrow}
+      </p>
+      <h2
+        style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);max-width:520px;"
+      >
+        {copy.quality.title}
+      </h2>
     </div>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-3">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;" class="quality-grid">
       {
-        quality.points.map((point, i) => {
-          const Icon = icons[i];
-          return (
-            <article class="rounded-card border border-border bg-surface p-6">
-              <span class="flex h-11 w-11 items-center justify-center rounded-pill bg-accent-soft text-accent">
-                <Icon size={22} aria-hidden="true" />
-              </span>
-              <h3 class="mt-4 text-xl text-ink">{point.title}</h3>
-              <p class="mt-2 text-ink-muted">{point.body}</p>
-            </article>
-          );
-        })
+        copy.quality.points.map((point, i) => (
+          <div
+            style="padding:40px;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-surface);position:relative;overflow:hidden;"
+          >
+            <!-- Subtle index -->
+            <span
+              style="position:absolute;top:24px;right:24px;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;color:var(--color-border);"
+            >
+              0{i + 1}
+            </span>
+            <h3
+              style="font-family:var(--font-display);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:12px;"
+            >
+              {point.title}
+            </h3>
+            <p style="font-size:0.9375rem;line-height:1.65;color:var(--color-ink-muted);">
+              {point.body}
+            </p>
+          </div>
+        ))
       }
     </div>
   </div>
 </section>
+
+<style>
+  @media (max-width: 768px) {
+    .quality-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .quality-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>

@@ -1,13 +1,38 @@
 ---
 import copy from "../content/copy.fr.json";
-const { why } = copy;
 ---
 
-<section class="border-t border-border bg-surface">
-  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
-    <div class="max-w-3xl">
-      <h2 class="text-3xl text-ink sm:text-4xl">{why.title}</h2>
-      {why.body.map((para) => <p class="mt-6 text-lg leading-relaxed text-ink-muted">{para}</p>)}
+<section style="padding:128px 24px;background:var(--color-accent);color:var(--color-ink-on-accent);">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="why-grid">
+    <div>
+      <p
+        style="font-size:0.8125rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-soft);margin-bottom:20px;"
+      >
+        {copy.why.eyebrow}
+      </p>
+      <h2
+        style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:600;letter-spacing:-0.02em;line-height:1.1;"
+      >
+        {copy.why.title}
+      </h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      {
+        copy.why.body.map((paragraph) => (
+          <p style="font-size:1.0625rem;line-height:1.7;opacity:0.85;">
+            {paragraph}
+          </p>
+        ))
+      }
     </div>
   </div>
 </section>
+
+<style>
+  @media (max-width: 768px) {
+    .why-grid {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+  }
+</style>

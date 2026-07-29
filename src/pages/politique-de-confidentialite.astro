@@ -1,128 +1,21 @@
 ---
 import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-
-export const prerender = true;
-
-const title = "Politique de confidentialité";
-
-// TODO_LEGAL: relecture juridique obligatoire avant l'ouverture du service.
-// Renseigner l'identité du responsable de traitement et, le cas échéant, du DPO.
-// Confirmer les durées de conservation et les sous-traitants réellement utilisés.
-// Voir DEPLOY_NOTES.md.
-const contactEmail = "contact@exemple.fr";
-const lastUpdated = "2 juillet 2026";
 ---
 
-<Base
-  title={`${title} | liste d'attente`}
-  description="Politique de confidentialité et traitement des données RGPD."
->
-  <main
-    id="contenu"
-    class="mx-auto max-w-[720px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]"
-  >
-    <h1 class="text-3xl text-ink sm:text-4xl">{title}</h1>
-    <p class="mt-3 text-sm text-ink-muted">Dernière mise à jour : {lastUpdated}.</p>
-
-    <div class="mt-8 space-y-8 text-ink-muted">
-      <section class="space-y-3">
-        <p>
-          Cette politique décrit comment vos données personnelles sont traitées lorsque vous vous
-          inscrivez à la liste d'attente. Le service n'est pas encore ouvert. La seule finalité de
-          ce traitement est de vous prévenir de son ouverture.
-        </p>
-      </section>
-
-      <section class="space-y-3">
-        <h2 class="text-xl text-ink">Responsable du traitement</h2>
-        <p>
-          Le responsable du traitement est [Raison sociale], [adresse]. Pour toute question
-          relative à vos données, vous pouvez écrire à {contactEmail}.
-        </p>
-      </section>
-
-      <section class="space-y-3">
-        <h2 class="text-xl text-ink">Données collectées</h2>
-        <p>Lors de l'inscription, nous collectons :</p>
-        <ul class="list-disc space-y-1 pl-5">
-          <li>votre prénom,</li>
-          <li>votre adresse e-mail,</li>
-          <li>les tranches d'âge de votre enfant,</li>
-          <li>votre code postal, facultatif,</li>
-          <li>la façon dont vous avez connu le service, facultative.</li>
-        </ul>
-        <p>
-          Nous conservons également la date de votre inscription et la version du texte de
-          consentement que vous avez accepté.
-        </p>
-      </section>
-
-      <section class="space-y-3">
-        <h2 class="text-xl text-ink">Base légale</h2>
-        <p>
-          Le traitement repose sur votre consentement, au sens de l'article 6.1.a du Règlement
-          général sur la protection des données. Vous pouvez retirer ce consentement à tout
-          moment, sans que cela remette en cause les traitements déjà effectués.
-        </p>
-      </section>
-
-      <section class="space-y-3">
-        <h2 class="text-xl text-ink">Destinataires et sous-traitants</h2>
-        <p>
-          Vos données ne sont ni vendues ni cédées. Elles sont accessibles aux personnes
-          habilitées au sein de [Raison sociale] et aux prestataires techniques suivants, agissant
-          comme sous-traitants :
-        </p>
-        <ul class="list-disc space-y-1 pl-5">
-          <li>Supabase, pour le stockage de la liste d'attente, dans l'Union européenne,</li>
-          <li>Resend, pour l'envoi de l'e-mail de confirmation,</li>
-          <li>Vercel, pour l'hébergement du site,</li>
-          <li>Plausible, pour une mesure d'audience sans cookie ni donnée personnelle.</li>
-        </ul>
-        <p>
-          Certains prestataires peuvent traiter des données hors de l'Union européenne. Le cas
-          échéant, ces transferts sont encadrés par les garanties appropriées prévues par le
-          RGPD, comme les clauses contractuelles types. À confirmer selon les prestataires
-          définitivement retenus.
-        </p>
-      </section>
-
-      <section class="space-y-3">
-        <h2 class="text-xl text-ink">Durée de conservation</h2>
-        <p>
-          Vos données sont conservées jusqu'à l'ouverture du service, puis pendant la durée
-          nécessaire à la relation qui en découle, et au maximum [durée à confirmer, par exemple
-          24 mois] après votre dernier contact. Elles sont supprimées plus tôt si vous retirez
-          votre consentement.
-        </p>
-      </section>
-
-      <section class="space-y-3">
-        <h2 class="text-xl text-ink">Vos droits</h2>
-        <p>
-          Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement,
-          d'opposition, de limitation et de portabilité de vos données, ainsi que du droit de
-          retirer votre consentement. Pour exercer ces droits, écrivez à {contactEmail}.
-        </p>
-        <p>
-          Vous pouvez également introduire une réclamation auprès de la Commission nationale de
-          l'informatique et des libertés, la CNIL.
-        </p>
-      </section>
-
-      <section class="space-y-3">
-        <h2 class="text-xl text-ink">Cookies et mesure d'audience</h2>
-        <p>
-          Le site n'utilise pas de cookie de suivi. La mesure d'audience est réalisée avec
-          Plausible, une solution sans cookie qui ne collecte aucune donnée personnelle et ne
-          permet pas de vous identifier.
-        </p>
-      </section>
-    </div>
-
-    <p class="mt-10">
-      <a class="text-accent underline" href="/">Retour à l'accueil</a>
+<Base title="Politique de confidentialité — Pazapas">
+  <Nav />
+  <main id="main" style="max-width:720px;margin:0 auto;padding:96px 24px;">
+    <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:48px;">
+      Politique de confidentialité
+    </h1>
+    <p style="color:var(--color-ink-muted);line-height:1.7;margin-bottom:16px;">
+      TODO_LEGAL — Ce document sera complété avant l'ouverture du service.
+    </p>
+    <p style="color:var(--color-ink-muted);line-height:1.7;">
+      Vos données sont conservées dans l'Union européenne et ne sont jamais revendues.
+      Pour toute demande, écrivez-nous à <a href="mailto:contact@pazapas.fr" style="color:var(--color-accent);">contact@pazapas.fr</a>.
     </p>
   </main>
   <Footer />

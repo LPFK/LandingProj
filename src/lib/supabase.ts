@@ -2,12 +2,6 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { WaitlistInput } from "./validation";
 import { CONSENT_VERSION } from "./validation";
 
-/*
- * Server-only Supabase access. Uses the service role key, which bypasses RLS,
- * so this module must never be imported into client code. Row-level security on
- * the `waitlist` table denies anon writes; only this path inserts (section 10).
- */
-
 const NETWORK_TIMEOUT_MS = 8000;
 
 export type WaitlistResult =
@@ -24,7 +18,6 @@ function getClient(): SupabaseClient | null {
     client = createClient(url, serviceRole, {
       auth: { persistSession: false },
       global: {
-        // Enforce a timeout on every request through this client.
         fetch: (input, init) =>
           fetch(input, { ...init, signal: AbortSignal.timeout(NETWORK_TIMEOUT_MS) }),
       },
@@ -33,10 +26,6 @@ function getClient(): SupabaseClient | null {
   return client;
 }
 
-/**
- * Upserts a waitlist signup on `email`. Returns a typed result rather than
- * throwing, so the endpoint can map failures to friendly responses.
- */
 export async function insertWaitlist(input: WaitlistInput): Promise<WaitlistResult> {
   const db = getClient();
   if (!db) return { ok: false, reason: "config" };

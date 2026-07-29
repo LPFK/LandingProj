@@ -1,41 +1,25 @@
 ---
 import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import WhyItExists from "../components/WhyItExists.astro";
 import Quality from "../components/Quality.astro";
 import FounderNote from "../components/FounderNote.astro";
+import WaitlistSection from "../components/WaitlistSection.astro";
 import FAQ from "../components/FAQ.astro";
 import Footer from "../components/Footer.astro";
-import WaitlistForm from "../components/WaitlistForm.tsx";
-import copy from "../content/copy.fr.json";
-
-// Static-first: the marketing page is prerendered. Only /api/waitlist is SSR.
-export const prerender = true;
-
-const { waitlist } = copy;
 ---
 
 <Base>
-  <main id="contenu">
+  <Nav />
+  <main id="main">
     <Hero />
     <HowItWorks />
     <WhyItExists />
     <Quality />
     <FounderNote />
-
-    <section id="waitlist" class="border-t border-border bg-surface scroll-mt-8">
-      <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
-        <div class="mx-auto grid max-w-4xl gap-10 md:grid-cols-2 md:items-start">
-          <div>
-            <h2 class="text-3xl text-ink sm:text-4xl">{waitlist.title}</h2>
-            <p class="mt-3 text-lg text-ink-muted">{waitlist.subtitle}</p>
-          </div>
-          <WaitlistForm client:visible />
-        </div>
-      </div>
-    </section>
-
+    <WaitlistSection />
     <FAQ />
   </main>
   <Footer />

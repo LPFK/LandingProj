@@ -1,36 +1,62 @@
 ---
 import copy from "../content/copy.fr.json";
-import { UserPlus, Package, TrendingUp } from "lucide-astro";
-
-const { howItWorks } = copy;
-const icons = [UserPlus, Package, TrendingUp];
 ---
 
-<section class="border-t border-border">
-  <div class="mx-auto max-w-[1200px] px-6 py-[var(--spacing-section-mobile)] md:py-[var(--spacing-section)]">
-    <div class="max-w-2xl">
-      <h2 class="text-3xl text-ink sm:text-4xl">{howItWorks.title}</h2>
-      <p class="mt-3 text-lg text-ink-muted">{howItWorks.subtitle}</p>
+<section style="padding:128px 24px;background:var(--color-surface);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:72px;">
+      <p
+        style="font-size:0.8125rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);margin-bottom:16px;"
+      >
+        {copy.howItWorks.eyebrow}
+      </p>
+      <h2
+        style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);max-width:500px;"
+      >
+        {copy.howItWorks.title}
+      </h2>
     </div>
 
-    <ol class="mt-12 grid gap-8 md:grid-cols-3">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;" class="steps-grid">
       {
-        howItWorks.steps.map((step, i) => {
-          const Icon = icons[i];
-          return (
-            <li class="rounded-card border border-border bg-surface p-6">
-              <span class="flex h-11 w-11 items-center justify-center rounded-pill bg-accent-soft text-accent">
-                <Icon size={22} aria-hidden="true" />
-              </span>
-              <h3 class="mt-4 text-xl text-ink">
-                <span class="mr-1 text-ink-muted">{i + 1}.</span>
-                {step.title}
-              </h3>
-              <p class="mt-2 text-ink-muted">{step.body}</p>
-            </li>
-          );
-        })
+        copy.howItWorks.steps.map((step, i) => (
+          <div
+            style={`padding:48px 40px;background:var(--color-bg);${i === 0 ? "border-radius:var(--radius-card) 0 0 var(--radius-card);" : i === 2 ? "border-radius:0 var(--radius-card) var(--radius-card) 0;" : ""}`}
+          >
+            <span
+              style="display:block;font-family:var(--font-display);font-size:3rem;font-weight:600;color:var(--color-accent-soft);letter-spacing:-0.04em;margin-bottom:24px;line-height:1;"
+            >
+              {step.number}
+            </span>
+            <h3
+              style="font-family:var(--font-display);font-size:1.375rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:12px;"
+            >
+              {step.title}
+            </h3>
+            <p style="font-size:0.9375rem;line-height:1.65;color:var(--color-ink-muted);">
+              {step.body}
+            </p>
+          </div>
+        ))
       }
-    </ol>
+    </div>
   </div>
 </section>
+
+<style>
+  @media (max-width: 768px) {
+    .steps-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2px !important;
+    }
+    .steps-grid > div {
+      border-radius: 0 !important;
+    }
+    .steps-grid > div:first-child {
+      border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
+    }
+    .steps-grid > div:last-child {
+      border-radius: 0 0 var(--radius-card) var(--radius-card) !important;
+    }
+  }
+</style>

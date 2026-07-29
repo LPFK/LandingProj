@@ -1,0 +1,57 @@
+---
+import WaitlistForm from "./WaitlistForm";
+import copy from "../content/copy.fr.json";
+---
+
+<section id="liste" style="padding:128px 24px;background:var(--color-surface);">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start;" class="waitlist-grid">
+
+    <!-- Left: context and reassurance -->
+    <div style="position:sticky;top:96px;" class="waitlist-sticky">
+      <p
+        style="font-size:0.8125rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);margin-bottom:20px;"
+      >
+        {copy.waitlist.eyebrow}
+      </p>
+      <h2
+        style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:24px;"
+      >
+        {copy.waitlist.title}
+      </h2>
+      <p style="font-size:1rem;line-height:1.65;color:var(--color-ink-muted);max-width:380px;">
+        {copy.waitlist.subtitle}
+      </p>
+
+      <!-- Trust signals repeated - Intent: reduce anxiety at the moment of commitment -->
+      <div style="margin-top:40px;display:flex;flex-direction:column;gap:12px;">
+        {[
+          { icon: "shield", label: copy.trust.podologist },
+          { icon: "lock", label: copy.trust.eu },
+          { icon: "x", label: copy.trust.noCommitment },
+        ].map(({ label }) => (
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--color-accent);flex-shrink:0;" aria-hidden="true"></div>
+            <span style="font-size:0.875rem;color:var(--color-ink-muted);">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div>
+      <WaitlistForm client:load />
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px) {
+    .waitlist-grid {
+      grid-template-columns: 1fr !important;
+      gap: 48px !important;
+    }
+    .waitlist-sticky {
+      position: static !important;
+    }
+  }
+</style>

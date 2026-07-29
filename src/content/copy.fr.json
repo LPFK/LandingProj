@@ -1,59 +1,69 @@
 {
   "meta": {
-    "title": "Des chaussures à la bonne pointure, à la bonne cadence",
+    "title": "Pazapas | Des chaussures qui grandissent avec votre enfant",
     "description": "Un abonnement de chaussures en cuir pour enfants de 0 à 7 ans. La bonne pointure, livrée au bon rythme, sans y penser. Rejoignez la liste d'attente.",
     "ogTitle": "L'abonnement chaussures qui grandit avec votre enfant",
-    "ogDescription": "Des paires curées, à la bonne pointure, livrées au bon moment. Inscrivez-vous à la liste d'attente."
+    "ogDescription": "Des paires choisies par une podologue, à la bonne pointure, livrées au bon moment."
   },
   "nav": {
-    "brand": "Marque",
+    "brand": "Pazapas",
     "skipToContent": "Aller au contenu",
     "cta": "Rejoindre la liste"
   },
   "hero": {
     "eyebrow": "Bientôt disponible",
-    "title": "Les bonnes chaussures, à la bonne pointure, au bon moment.",
-    "subtitle": "Un abonnement de chaussures en cuir pour les enfants de 0 à 7 ans. Nous curons chaque paire et l'expédions quand le pied a grandi, sans que vous ayez à y penser.",
+    "headline1": "Vous n'avez plus à chercher",
+    "headline2": "la bonne pointure.",
+    "subtitle": "Un abonnement de chaussures en cuir pour les enfants de 0 à 7 ans, choisies par une podologue, livrées au bon moment, sans que vous ayez à y penser.",
     "cta": "Rejoindre la liste d'attente",
-    "reassurance": "Sans engagement pour le moment. Nous vous préviendrons à l'ouverture.",
-    "visualAlt": "Illustration géométrique évoquant une paire de chaussures"
+    "trust": "Choisies avec une podologue. Sans engagement. Données protégées.",
+    "visualAlt": "Paire de chaussures en cuir pour enfant sur fond neutre"
+  },
+  "trust": {
+    "podologist": "Choisies avec une podologue",
+    "noCommitment": "Sans engagement",
+    "eu": "Données en Europe"
   },
   "howItWorks": {
-    "title": "Comment ça marche",
-    "subtitle": "Trois étapes, puis plus rien à gérer.",
+    "eyebrow": "Comment ça marche",
+    "title": "Trois étapes, puis plus rien à gérer.",
     "steps": [
       {
+        "number": "01",
         "title": "Vous vous inscrivez",
-        "body": "Vous nous indiquez l'âge de votre enfant et vos préférences. Nous préparons son profil de pointure."
+        "body": "Vous indiquez l'âge de votre enfant. Nous préparons son profil de pointure avec l'aide d'une podologue."
       },
       {
-        "title": "Vous recevez des paires curées",
-        "body": "Nos sélections arrivent chez vous, choisies pour la santé du pied et la qualité du cuir."
+        "number": "02",
+        "title": "Vous recevez des paires choisies pour la santé du pied",
+        "body": "Chaque sélection arrive chez vous, choisie pour la santé du pied et la qualité du cuir. Pas de compromis."
       },
       {
+        "number": "03",
         "title": "Vous grandissez ensemble",
         "body": "À chaque poussée de croissance, la pointure suivante arrive au bon moment. Vous ne cherchez plus."
       }
     ]
   },
   "why": {
-    "title": "Pourquoi cet abonnement existe",
+    "eyebrow": "Pourquoi cet abonnement existe",
+    "title": "Le bon soulier, c'est une question de santé.",
     "body": [
-      "Un pied d'enfant grandit vite et change de pointure plusieurs fois par an. Une chaussure trop petite gêne la marche et la posture, une chaussure trop grande aussi.",
-      "Entre les magasins, les tailles qui varient d'une marque à l'autre et le temps qui manque, choisir devient une charge. Nous prenons cette charge en respectant le pied qui grandit."
+      "Un pied d'enfant change de pointure plusieurs fois par an. Une chaussure trop petite gêne la marche et la posture, une chaussure trop grande aussi. L'écart est souvent de quelques millimètres.",
+      "Entre les magasins, les tailles qui varient d'une marque à l'autre et le temps qui manque, choisir devient une charge. Nous prenons cette charge, avec le sérieux que mérite la santé du pied qui grandit."
     ]
   },
   "quality": {
-    "title": "Ce que nous mettons dans chaque paire",
-    "subtitle": "Des choix concrets, pas des promesses vagues.",
+    "eyebrow": "Ce que nous mettons dans chaque paire",
+    "title": "Des choix concrets, pas des promesses vagues.",
     "points": [
       {
         "title": "Cuir tanné avec soin",
         "body": "Des cuirs souples et respirants, sélectionnés pour durer une saison de croissance sans blesser le pied."
       },
       {
-        "title": "Curation française",
-        "body": "Chaque modèle est choisi en France selon des critères de santé du pied et de tenue dans le temps."
+        "title": "Selection podologique",
+        "body": "Chaque modèle est validé par notre podologue selon des critères de santé du pied, de galbe et de tenue dans le temps."
       },
       {
         "title": "Fabrication responsable",
@@ -62,13 +72,14 @@
     ]
   },
   "founder": {
-    "title": "Un mot du fondateur",
-    "body": "J'ai créé ce service parce que j'ai passé trop de samedis à chercher la bonne pointure, entre deux tailles et deux marques qui ne tombent jamais pareil. Je voulais que le bon soulier arrive au bon moment, choisi avec le même soin que si je le faisais pour mon propre enfant. Pour la santé des enfants, nous travaillons en étroite collaboration avec une podologue, qui accompagne nos choix de pointure et de forme. C'est la promesse que nous tenons, paire après paire.",
+    "eyebrow": "Un mot du fondateur",
+    "body": "J'ai créé ce service parce que j'ai passé trop de samedis à chercher la bonne pointure, entre deux tailles et deux marques qui ne tombent jamais pareil. Je voulais que le bon soulier arrive au bon moment, choisi avec le même soin que si je le faisais pour mon propre enfant. Nous travaillons en étroite collaboration avec une podologue, qui accompagne chacun de nos choix de pointure et de forme. C'est la promesse que nous tenons, paire après paire.",
     "signature": "Le fondateur"
   },
   "waitlist": {
-    "title": "Rejoignez la liste d'attente",
-    "subtitle": "Vous serez parmi les premiers prévenus à l'ouverture. Pas de spam, pas de revente de vos données.",
+    "eyebrow": "Accès anticipé",
+    "title": "Soyez parmi les premiers.",
+    "subtitle": "Nous vous préviendrons à l'ouverture, avec les détails des formules et de la première sélection. Pas de spam, pas de revente de vos données.",
     "labels": {
       "firstName": "Prénom",
       "email": "Adresse e-mail",
@@ -113,19 +124,20 @@
     "v1": "J'accepte de recevoir par e-mail des informations sur l'ouverture du service. Mes données sont conservées dans l'Union européenne, ne sont pas revendues, et je peux demander leur suppression à tout moment."
   },
   "faq": {
-    "title": "Questions fréquentes",
+    "eyebrow": "Questions fréquentes",
+    "title": "Ce que vous voulez savoir.",
     "items": [
       {
         "q": "Le service est-il déjà disponible ?",
-        "a": "Pas encore. Nous construisons la liste d'attente pour ouvrir auprès des premières familles intéressées. Vous serez prévenu par e-mail."
+        "a": "Pas encore. Nous construisons la liste d'attente pour ouvrir auprès des premières familles intéressées. Vous serez prévenu par e-mail dès l'ouverture."
       },
       {
         "q": "Comment la pointure est-elle choisie ?",
-        "a": "À l'inscription, vous indiquez l'âge de l'enfant. À l'ouverture, nous affinerons la mesure du pied pour envoyer la bonne pointure au bon moment."
+        "a": "À l'inscription, vous indiquez l'âge de l'enfant. Notre podologue affine ensuite la sélection selon les critères de santé du pied. À l'ouverture, nous préciserons le protocole de mesure."
       },
       {
         "q": "Combien de paires par an ?",
-        "a": "La cadence sera adaptée à la croissance de l'enfant. Le détail des formules sera communiqué à l'ouverture."
+        "a": "La cadence sera adaptée à la croissance de l'enfant. Le détail des formules sera communiqué à l'ouverture du service."
       },
       {
         "q": "Puis-je arrêter quand je veux ?",
@@ -140,7 +152,7 @@
   "footer": {
     "tagline": "Des chaussures qui grandissent avec votre enfant.",
     "contactLabel": "Nous écrire",
-    "contactEmail": "contact@exemple.fr",
+    "contactEmail": "contact@pazapas.fr",
     "legal": {
       "privacy": "Politique de confidentialité",
       "mentions": "Mentions légales"
@@ -148,9 +160,9 @@
     "copyright": "Tous droits réservés."
   },
   "email": {
-    "subject": "Vous êtes sur la liste d'attente",
+    "subject": "Vous êtes sur la liste d'attente Pazapas",
     "heading": "Merci, vous êtes inscrit.",
     "body": "Nous avons bien reçu votre inscription à la liste d'attente. Nous vous écrirons dès que le service ouvre, avec les détails des formules et de la première sélection. À bientôt.",
-    "signature": "L'équipe"
+    "signature": "L'équipe Pazapas"
   }
 }

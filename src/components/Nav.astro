@@ -1,0 +1,25 @@
+---
+import copy from "../content/copy.fr.json";
+---
+
+<header
+  style="position:sticky;top:0;z-index:40;background:var(--color-bg);border-bottom:1px solid var(--color-border);"
+>
+  <div
+    style="max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;"
+  >
+    <span
+      style="font-family:var(--font-display);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);"
+    >
+      {copy.nav.brand}
+    </span>
+    <a
+      href="#liste"
+      style="display:inline-flex;align-items:center;gap:6px;background:var(--color-accent);color:var(--color-ink-on-accent);font-size:0.875rem;font-weight:500;padding:10px 20px;border-radius:var(--radius-pill);text-decoration:none;transition:background 0.15s;"
+      onmouseover="this.style.background='var(--color-accent-deep)'"
+      onmouseout="this.style.background='var(--color-accent)'"
+    >
+      {copy.nav.cta}
+    </a>
+  </div>
+</header>

@@ -3,7 +3,6 @@ import { waitlistSchema } from "../../lib/validation";
 import { insertWaitlist } from "../../lib/supabase";
 import { sendConfirmationEmail } from "../../lib/resend";
 
-// On-demand rendering: this endpoint must run per request, not at build time.
 export const prerender = false;
 
 function json(body: unknown, status: number): Response {
@@ -14,7 +13,6 @@ function json(body: unknown, status: number): Response {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  // Guard the content type before touching the body.
   if (!request.headers.get("content-type")?.includes("application/json")) {
     return json({ ok: false, error: "invalid_content_type" }, 415);
   }
@@ -26,10 +24,8 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ ok: false, error: "invalid_json" }, 400);
   }
 
-  // Server-side validation mirrors the client using the shared schema.
   const parsed = waitlistSchema.safeParse(payload);
   if (!parsed.success) {
-    // Do not echo the payload back; report field names only, no PII (section 10).
     const fields = parsed.error.issues.map((i) => i.path.join("."));
     return json({ ok: false, error: "validation", fields }, 422);
   }
@@ -40,10 +36,8 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ ok: false, error: "storage" }, status);
   }
 
-  // The signup is safe once stored. Email is best-effort and never blocks it.
-  // TODO_DOUBLE_OPTIN: to add double opt-in, replace this direct confirmation
-  // with a tokenised verification email and mark the row unconfirmed until the
-  // token is followed. Keep the insert above; gate the marketing consent on it.
+  // TODO_DOUBLE_OPTIN: replace direct confirmation with tokenised verification
+  // email and mark the row unconfirmed until the token is followed.
   await sendConfirmationEmail(parsed.data.email);
 
   return json({ ok: true }, 201);
