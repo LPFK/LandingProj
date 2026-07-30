@@ -2,21 +2,264 @@
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+
+const lastUpdated = "Juillet 2026";
 ---
 
 <Base title="Politique de confidentialité — Pazapas">
   <Nav />
-  <main id="main" style="max-width:720px;margin:0 auto;padding:96px 24px;">
-    <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:48px;">
+  <main id="main" style="max-width:720px;margin:0 auto;padding:96px 24px 128px;">
+
+    <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,2.75rem);font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:16px;">
       Politique de confidentialité
     </h1>
-    <p style="color:var(--color-ink-muted);line-height:1.7;margin-bottom:16px;">
-      TODO_LEGAL — Ce document sera complété avant l'ouverture du service.
+    <p style="font-size:0.875rem;color:var(--color-ink-muted);margin-bottom:64px;">
+      Dernière mise à jour : {lastUpdated}. Conformément au Règlement (UE) 2016/679 du 27 avril 2016
+      (RGPD) et à la loi Informatique et Libertés modifiée.
     </p>
-    <p style="color:var(--color-ink-muted);line-height:1.7;">
-      Vos données sont conservées dans l'Union européenne et ne sont jamais revendues.
-      Pour toute demande, écrivez-nous à <a href="mailto:contact@pazapas.fr" style="color:var(--color-accent);">contact@pazapas.fr</a>.
-    </p>
+
+    <section class="legal-section">
+      <h2>1. Responsable du traitement</h2>
+      <p>
+        Le responsable du traitement des données collectées sur ce site est :
+      </p>
+      <ul>
+        <li><strong>Raison sociale :</strong> [À COMPLÉTER]</li>
+        <li><strong>Adresse :</strong> [À COMPLÉTER]</li>
+        <li><strong>Contact :</strong> <a href="mailto:contact@pazapas.fr">contact@pazapas.fr</a></li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>2. Données collectées</h2>
+      <p>
+        Dans le cadre de l'inscription à la liste d'attente, nous collectons les données suivantes :
+      </p>
+      <ul>
+        <li><strong>Prénom</strong> — requis, pour personnaliser les communications.</li>
+        <li><strong>Adresse e-mail</strong> — requise, pour vous notifier à l'ouverture du service.</li>
+        <li><strong>Tranche(s) d'âge de l'enfant</strong> — requises, pour adapter notre communication et notre offre à votre situation.</li>
+        <li><strong>Code postal</strong> — facultatif, pour comprendre la répartition géographique de notre liste d'attente.</li>
+        <li><strong>Source de découverte du service</strong> — facultatif, pour comprendre nos canaux d'acquisition.</li>
+        <li><strong>Consentement marketing</strong> — requis, trace de votre accord explicite et de la version du texte de consentement accepté.</li>
+        <li><strong>Date et heure d'inscription</strong> — enregistrée automatiquement à des fins de traçabilité du consentement.</li>
+      </ul>
+      <p>
+        Nous ne collectons pas de données sensibles au sens de l'article 9 du RGPD.
+        Aucune donnée bancaire n'est collectée à ce stade.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>3. Finalités et base légale</h2>
+      <p>
+        Vos données sont traitées pour les finalités suivantes :
+      </p>
+      <ul>
+        <li>
+          <strong>Gestion de la liste d'attente</strong> — vous contacter par e-mail lors de l'ouverture
+          du service et vous communiquer les informations relatives aux formules d'abonnement.
+          Base légale : <em>consentement explicite</em> (art. 6.1.a du RGPD).
+        </li>
+        <li>
+          <strong>Analyse statistique agrégée</strong> — comprendre la demande par tranche d'âge
+          et par zone géographique pour dimensionner l'offre. Ces analyses sont réalisées sur des
+          données agrégées et anonymisées.
+          Base légale : <em>intérêt légitime</em> (art. 6.1.f du RGPD).
+        </li>
+      </ul>
+      <p>
+        Nous n'utilisons pas vos données à des fins de profilage automatisé produisant des effets
+        juridiques ou vous affectant de manière significative.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>4. Durée de conservation</h2>
+      <p>
+        Vos données sont conservées jusqu'à l'une des échéances suivantes, selon la première atteinte :
+      </p>
+      <ul>
+        <li>Ouverture du service et transformation en client actif (les données migrent alors vers le système de gestion des abonnements).</li>
+        <li>Exercice de votre droit à l'effacement (voir section 6).</li>
+        <li>Trois ans à compter de votre inscription, si le service n'a pas ouvert dans cet intervalle.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>5. Destinataires et sous-traitants</h2>
+      <p>
+        Vos données ne sont jamais revendues ni cédées à des tiers à des fins commerciales.
+        Elles sont transmises uniquement aux sous-traitants techniques suivants, dans le cadre strict
+        de la fourniture du service :
+      </p>
+      <ul>
+        <li>
+          <strong>Supabase</strong> (infrastructure base de données) — stockage sécurisé de la liste
+          d'attente sur des serveurs localisés dans l'Union européenne (région EU West).
+          <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Politique de confidentialité Supabase</a>.
+        </li>
+        <li>
+          <strong>Resend</strong> (envoi d'e-mails transactionnels) — utilisé uniquement pour envoyer
+          l'e-mail de confirmation d'inscription. Votre adresse e-mail est transmise à Resend dans ce
+          seul but.
+          <a href="https://resend.com/privacy" target="_blank" rel="noopener noreferrer">Politique de confidentialité Resend</a>.
+        </li>
+        <li>
+          <strong>Vercel</strong> (hébergement du site) — les requêtes transitent par l'infrastructure
+          Vercel. Des données techniques (adresse IP, user-agent) peuvent être traitées de façon
+          éphémère à des fins de routage et de sécurité.
+          <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Politique de confidentialité Vercel</a>.
+        </li>
+      </ul>
+      <p>
+        Des contrats de sous-traitance conformes à l'article 28 du RGPD encadrent ces relations.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>6. Vos droits</h2>
+      <p>
+        Conformément au RGPD et à la loi Informatique et Libertés, vous disposez des droits suivants
+        sur vos données personnelles :
+      </p>
+      <ul>
+        <li><strong>Droit d'accès</strong> (art. 15 RGPD) — obtenir une copie des données que nous détenons sur vous.</li>
+        <li><strong>Droit de rectification</strong> (art. 16 RGPD) — corriger des données inexactes ou incomplètes.</li>
+        <li><strong>Droit à l'effacement</strong> (art. 17 RGPD) — demander la suppression de vos données, sauf obligation légale de conservation.</li>
+        <li><strong>Droit à la limitation du traitement</strong> (art. 18 RGPD) — restreindre l'utilisation de vos données dans certains cas.</li>
+        <li><strong>Droit à la portabilité</strong> (art. 20 RGPD) — recevoir vos données dans un format structuré et lisible par machine.</li>
+        <li><strong>Droit d'opposition</strong> (art. 21 RGPD) — vous opposer à un traitement fondé sur l'intérêt légitime.</li>
+        <li><strong>Droit de retrait du consentement</strong> — retirer votre consentement à tout moment, sans que cela ne compromette la licéité du traitement antérieur.</li>
+      </ul>
+      <p>
+        Pour exercer l'un de ces droits, écrivez-nous à <a href="mailto:contact@pazapas.fr">contact@pazapas.fr</a>.
+        Nous répondrons dans un délai d'un mois à compter de la réception de votre demande (délai
+        pouvant être porté à trois mois en cas de demande complexe, avec information préalable).
+        Une pièce d'identité pourra être demandée pour vérifier votre identité avant de donner suite.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>7. Droit de réclamation</h2>
+      <p>
+        Si vous estimez que le traitement de vos données n'est pas conforme à la réglementation,
+        vous avez le droit d'introduire une réclamation auprès de la Commission Nationale de
+        l'Informatique et des Libertés (CNIL) :
+      </p>
+      <ul>
+        <li><strong>Site :</strong> <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener noreferrer">cnil.fr/fr/plaintes</a></li>
+        <li><strong>Adresse :</strong> CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07</li>
+      </ul>
+      <p>
+        Ce droit de réclamation ne préjudicie pas d'autres voies de recours administratives ou juridictionnelles.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>8. Cookies et mesure d'audience</h2>
+      <p>
+        Ce site n'utilise pas de cookies publicitaires, de cookies de réseaux sociaux, ni de traceurs
+        tiers permettant de vous identifier ou de vous suivre d'un site à l'autre.
+      </p>
+      <p>
+        Si une solution de mesure d'audience est activée, il s'agit d'une solution cookieless
+        (sans dépôt de cookie) qui ne collecte aucune donnée personnelle identifiable et ne nécessite
+        donc pas de bandeau de consentement. Les données d'audience sont agrégées et anonymisées.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>9. Sécurité</h2>
+      <p>
+        Nous mettons en oeuvre les mesures techniques et organisationnelles appropriées pour protéger
+        vos données contre toute perte, accès non autorisé, divulgation ou altération :
+      </p>
+      <ul>
+        <li>Chiffrement des données en transit (HTTPS/TLS).</li>
+        <li>Chiffrement des données au repos sur l'infrastructure Supabase.</li>
+        <li>Accès aux données limité au seul rôle de service (service role) côté serveur — aucun accès public à la base de données.</li>
+        <li>Clés d'API stockées exclusivement côté serveur, jamais exposées au client.</li>
+        <li>Séparation stricte entre les variables d'environnement serveur et client.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>10. Modifications de cette politique</h2>
+      <p>
+        Nous nous réservons le droit de modifier cette politique à tout moment, notamment pour nous
+        conformer à l'évolution de la réglementation ou aux changements du service. En cas de
+        modification substantielle, nous vous en informerons par e-mail si vous êtes inscrit à la
+        liste d'attente. La date de dernière mise à jour est indiquée en haut de cette page.
+      </p>
+    </section>
+
   </main>
   <Footer />
 </Base>
+
+<style>
+  .legal-section {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .legal-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin-bottom: 16px;
+  }
+  .legal-section p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin-bottom: 12px;
+  }
+  .legal-section p:last-child {
+    margin-bottom: 0;
+  }
+  .legal-section ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .legal-section li {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    padding-left: 16px;
+    position: relative;
+  }
+  .legal-section li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+  .legal-section a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal-section a:hover {
+    color: var(--color-accent-deep);
+  }
+  em {
+    font-style: italic;
+    color: var(--color-ink);
+  }
+</style>

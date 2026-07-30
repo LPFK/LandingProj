@@ -6,13 +6,144 @@ import Footer from "../components/Footer.astro";
 
 <Base title="Mentions légales — Pazapas">
   <Nav />
-  <main id="main" style="max-width:720px;margin:0 auto;padding:96px 24px;">
-    <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:48px;">
+  <main id="main" style="max-width:720px;margin:0 auto;padding:96px 24px 128px;">
+
+    <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,2.75rem);font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:16px;">
       Mentions légales
     </h1>
-    <p style="color:var(--color-ink-muted);line-height:1.7;">
-      TODO_LEGAL — Ce document sera complété avant l'ouverture du service.
+    <p style="font-size:0.875rem;color:var(--color-ink-muted);margin-bottom:64px;">
+      Conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN).
     </p>
+
+    <section class="legal-section">
+      <h2>Éditeur du site</h2>
+      <p>
+        Le site pazapas.fr est édité par :
+      </p>
+      <ul>
+        <li><strong>Raison sociale :</strong> [À COMPLÉTER — nom de la société]</li>
+        <li><strong>Forme juridique :</strong> [À COMPLÉTER — ex. SAS, SARL, auto-entrepreneur]</li>
+        <li><strong>Capital social :</strong> [À COMPLÉTER] €</li>
+        <li><strong>Siège social :</strong> [À COMPLÉTER — adresse complète]</li>
+        <li><strong>SIRET :</strong> [À COMPLÉTER]</li>
+        <li><strong>RCS :</strong> [À COMPLÉTER — ville d'immatriculation]</li>
+        <li><strong>Directeur de la publication :</strong> [À COMPLÉTER — nom du représentant légal]</li>
+        <li><strong>Contact :</strong> <a href="mailto:contact@pazapas.fr">contact@pazapas.fr</a></li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>Hébergement</h2>
+      <p>Le site est hébergé par :</p>
+      <ul>
+        <li><strong>Société :</strong> Vercel Inc.</li>
+        <li><strong>Adresse :</strong> 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis</li>
+        <li><strong>Site web :</strong> <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a></li>
+      </ul>
+      <p>
+        Les données de la liste d'attente sont stockées par Supabase (infrastructure base de données),
+        dont les serveurs sont localisés dans l'Union européenne (région EU West).
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des contenus présents sur ce site (textes, visuels, logotype, structure) sont la propriété
+        exclusive de l'éditeur ou font l'objet d'une autorisation d'utilisation. Toute reproduction,
+        représentation, modification ou exploitation, totale ou partielle, par quelque procédé que ce soit,
+        sans autorisation expresse et préalable, est interdite et constituerait une contrefaçon sanctionnée
+        par les articles L.335-2 et suivants du Code de la propriété intellectuelle.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Données personnelles</h2>
+      <p>
+        Le traitement des données personnelles collectées via ce site est décrit dans notre
+        <a href="/politique-de-confidentialite">politique de confidentialité</a>.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Cookies</h2>
+      <p>
+        Ce site n'utilise pas de cookies publicitaires ni de cookies de traçage tiers.
+        Si une solution d'analyse d'audience est activée, elle est cookieless et ne collecte
+        aucune donnée personnelle identifiable (voir politique de confidentialité).
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Droit applicable et juridiction</h2>
+      <p>
+        Les présentes mentions légales sont régies par le droit français. En cas de litige,
+        les tribunaux français seront seuls compétents.
+      </p>
+    </section>
+
   </main>
   <Footer />
 </Base>
+
+<style>
+  .legal-section {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .legal-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin-bottom: 16px;
+  }
+  .legal-section p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin-bottom: 12px;
+  }
+  .legal-section p:last-child {
+    margin-bottom: 0;
+  }
+  .legal-section ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .legal-section li {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    padding-left: 16px;
+    position: relative;
+  }
+  .legal-section li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+  .legal-section a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal-section a:hover {
+    color: var(--color-accent-deep);
+  }
+</style>

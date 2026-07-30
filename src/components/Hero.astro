@@ -12,12 +12,14 @@ import copy from "../content/copy.fr.json";
     class="hero-copy"
   >
     <p
+      class="hero-anim"
       style="font-size:0.8125rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);margin-bottom:24px;"
     >
       {copy.hero.eyebrow}
     </p>
 
     <h1
+      class="hero-anim hero-anim-d1"
       style="font-family:var(--font-display);font-size:clamp(2.75rem, 5vw, 4.5rem);font-weight:600;line-height:1.0;letter-spacing:-0.03em;color:var(--color-ink);margin-bottom:32px;"
     >
       {copy.hero.headline1}<br />
@@ -25,12 +27,13 @@ import copy from "../content/copy.fr.json";
     </h1>
 
     <p
+      class="hero-anim hero-anim-d2"
       style="font-size:1.125rem;line-height:1.65;color:var(--color-ink-muted);margin-bottom:48px;max-width:480px;"
     >
       {copy.hero.subtitle}
     </p>
 
-    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+    <div class="hero-anim hero-anim-d3" style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
       <a
         href="#liste"
         style="display:inline-flex;align-items:center;background:var(--color-accent);color:var(--color-ink-on-accent);font-size:1rem;font-weight:500;padding:16px 32px;border-radius:var(--radius-pill);text-decoration:none;transition:background 0.15s,transform 0.15s;box-shadow:var(--shadow-card);"
@@ -40,8 +43,7 @@ import copy from "../content/copy.fr.json";
         {copy.hero.cta}
       </a>
 
-      <!-- Trust strip - Intent: make commitment cost visible immediately -->
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+      <div class="hero-anim hero-anim-d4" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
         <span class="trust-item">
           <span class="trust-dot"></span>
           {copy.trust.podologist}
@@ -58,13 +60,12 @@ import copy from "../content/copy.fr.json";
     </div>
   </div>
 
-  <!-- Visual column - editorial terracotta panel -->
+  <!-- Visual column -->
   <div
     style="background:var(--color-accent-soft);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;"
-    class="hero-visual"
+    class="hero-visual hero-visual-anim"
     aria-hidden="true"
   >
-    <!-- Decorative geometric composition -->
     <svg
       viewBox="0 0 480 560"
       width="320"
@@ -72,27 +73,22 @@ import copy from "../content/copy.fr.json";
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <!-- Shoe silhouette, abstract and editorial -->
       <ellipse cx="240" cy="420" rx="180" ry="20" fill="rgba(184,92,42,0.12)" />
-      <!-- Sole -->
       <path
         d="M 80 380 Q 80 400 240 405 Q 400 400 400 380 L 380 340 Q 360 330 240 330 Q 120 330 100 340 Z"
         fill="var(--color-accent)"
         opacity="0.9"
       />
-      <!-- Upper body -->
       <path
         d="M 100 340 Q 110 260 160 220 Q 200 190 240 188 Q 280 186 320 210 Q 370 240 380 340 Z"
         fill="#C96A38"
         opacity="0.85"
       />
-      <!-- Highlight -->
       <path
         d="M 160 220 Q 200 200 240 200 Q 280 200 310 220 Q 290 210 240 212 Q 190 212 160 220 Z"
         fill="white"
         opacity="0.2"
       />
-      <!-- Lace area -->
       <path
         d="M 190 250 Q 240 240 290 250 L 285 270 Q 240 260 195 270 Z"
         fill="rgba(250,246,241,0.5)"
@@ -102,10 +98,8 @@ import copy from "../content/copy.fr.json";
       <line x1="240" y1="248" x2="240" y2="302" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
       <line x1="260" y1="250" x2="260" y2="300" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
       <line x1="280" y1="255" x2="280" y2="295" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
-      <!-- Decorative circle -->
       <circle cx="360" cy="140" r="80" stroke="var(--color-accent)" stroke-width="1.5" opacity="0.3" fill="none" />
       <circle cx="360" cy="140" r="56" fill="var(--color-accent)" opacity="0.08" />
-      <!-- Small dots -->
       <circle cx="120" cy="160" r="4" fill="var(--color-accent)" opacity="0.3" />
       <circle cx="134" cy="148" r="2.5" fill="var(--color-accent)" opacity="0.2" />
     </svg>

@@ -48,6 +48,7 @@ body {
   color: var(--color-ink);
   font-family: var(--font-body);
   line-height: 1.65;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 h1, h2, h3, h4 {
@@ -64,6 +65,100 @@ h1, h2, h3, h4 {
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
+}
+
+/* Dark mode token overrides — warm palette, never cold blue */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --color-bg:            #1A1612;
+    --color-surface:       #251E19;
+    --color-ink:           #FAF6F1;
+    --color-ink-muted:     #B8A99A;
+    --color-accent:        #C96A38;
+    --color-accent-warm:   #D4784A;
+    --color-accent-soft:   #3D2416;
+    --color-accent-deep:   #E07A50;
+    --color-border:        #3A2E26;
+    --color-ink-on-accent: #FAF6F1;
+    --shadow-card:         0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-lift:         0 16px 48px rgba(0, 0, 0, 0.4);
+  }
+}
+
+html[data-theme="dark"] {
+  --color-bg:            #1A1612;
+  --color-surface:       #251E19;
+  --color-ink:           #FAF6F1;
+  --color-ink-muted:     #B8A99A;
+  --color-accent:        #C96A38;
+  --color-accent-warm:   #D4784A;
+  --color-accent-soft:   #3D2416;
+  --color-accent-deep:   #E07A50;
+  --color-border:        #3A2E26;
+  --color-ink-on-accent: #FAF6F1;
+  --shadow-card:         0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-lift:         0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* === Animation system ===================================================== */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Scroll-triggered — JS adds .in-view via IntersectionObserver */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity  0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-delay="1"] { transition-delay:  80ms; }
+[data-delay="2"] { transition-delay: 160ms; }
+[data-delay="3"] { transition-delay: 240ms; }
+[data-delay="4"] { transition-delay: 320ms; }
+[data-delay="5"] { transition-delay: 400ms; }
+
+/* Hero — runs immediately on load, no observer needed */
+.hero-anim {
+  animation: fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-anim-d1 { animation-delay: 100ms; }
+.hero-anim-d2 { animation-delay: 220ms; }
+.hero-anim-d3 { animation-delay: 370ms; }
+.hero-anim-d4 { animation-delay: 520ms; }
+.hero-visual-anim {
+  animation: fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 150ms both;
+}
+
+/* FAQ content height transition */
+.faq-content {
+  overflow: hidden;
+  transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Respect reduced motion — show everything immediately, no transitions */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  [data-animate].in-view,
+  .hero-anim,
+  .hero-visual-anim {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .faq-content { transition: none; }
 }
 
 /* Focus visible - accessible but unobtrusive */

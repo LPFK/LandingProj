@@ -5,19 +5,21 @@ import copy from "../content/copy.fr.json";
 <section style="padding:128px 24px;background:var(--color-bg);">
   <div style="max-width:720px;margin:0 auto;">
     <p
+      data-animate
       style="font-size:0.8125rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);margin-bottom:16px;"
     >
       {copy.faq.eyebrow}
     </p>
     <h2
+      data-animate data-delay="1"
       style="font-family:var(--font-display);font-size:clamp(2rem,3vw,2.5rem);font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:56px;"
     >
       {copy.faq.title}
     </h2>
 
-    <div style="display:flex;flex-direction:column;">
+    <div data-animate data-delay="2" style="display:flex;flex-direction:column;">
       {
-        copy.faq.items.map((item, i) => (
+        copy.faq.items.map((item) => (
           <details
             style="border-top:1px solid var(--color-border);padding:0;"
             class="faq-item"
@@ -31,7 +33,7 @@ import copy from "../content/copy.fr.json";
                 {item.q}
               </span>
               <span
-                style="flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--color-accent);transition:transform 0.2s;"
+                style="flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--color-accent);transition:transform 0.3s cubic-bezier(0.22,1,0.36,1);"
                 class="faq-icon"
                 aria-hidden="true"
               >
@@ -40,8 +42,8 @@ import copy from "../content/copy.fr.json";
                 </svg>
               </span>
             </summary>
-            <div style="padding:0 0 24px;padding-right:40px;">
-              <p style="font-size:0.9375rem;line-height:1.7;color:var(--color-ink-muted);">
+            <div class="faq-content">
+              <p style="font-size:0.9375rem;line-height:1.7;color:var(--color-ink-muted);padding-bottom:24px;padding-right:40px;">
                 {item.a}
               </p>
             </div>
