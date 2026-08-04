@@ -6,68 +6,69 @@
     "ogDescription": "Des paires choisies par une podologue, à la bonne pointure, livrées au bon moment."
   },
   "nav": {
-    "brand": "Pazapas",
+    "brand": "Les tout petits pieds",
     "skipToContent": "Aller au contenu",
     "cta": "Rejoindre la liste"
   },
   "hero": {
     "eyebrow": "Bientôt disponible",
-    "headline1": "Vous n'avez plus à chercher",
-    "headline2": "la bonne pointure.",
-    "subtitle": "Un abonnement de chaussures en cuir pour les enfants de 0 à 7 ans, choisies par une podologue, livrées au bon moment, sans que vous ayez à y penser.",
+    "headline1": "Les petits pieds grandissent.",
+    "headline2": "Leurs chaussures aussi.",
+    "subtitle": "Notre concept : Allier le respect du développement du pied, des prix doux pour la famille et un gain de temps précieux au quotidien grâce à notre abonnement.",
     "cta": "Rejoindre la liste d'attente",
     "trust": "Choisies avec une podologue. Sans engagement. Données protégées.",
     "visualAlt": "Paire de chaussures en cuir pour enfant sur fond neutre"
   },
   "trust": {
-    "podologist": "Choisies avec une podologue",
-    "noCommitment": "Sans engagement",
-    "eu": "Données en Europe"
+    "podologist": "Expertise Podologique",
+    "noCommitment": "Budget maîtrisé",
+    "eu": "Conception Française"
   },
   "howItWorks": {
     "eyebrow": "Comment ça marche",
-    "title": "Trois étapes, puis plus rien à gérer.",
+    "title": "Trois étapes, pour sauver votre Samedi.",
     "steps": [
       {
         "number": "01",
         "title": "Vous vous inscrivez",
-        "body": "Vous indiquez l'âge de votre enfant. Nous préparons son profil de pointure avec l'aide d'une podologue."
+        "body": "Vous indiquez l'âge et la pointure de votre enfant. Vous téléchargez le pédimètre programmé et nous nous occupons du reste."
       },
       {
         "number": "02",
         "title": "Vous recevez des paires choisies pour la santé du pied",
-        "body": "Chaque sélection arrive chez vous, choisie pour la santé du pied et la qualité du cuir. Pas de compromis."
+        "body": "Chaque paire arrive chez vous, adaptée pour le confort et la santé du pied. Zéro tracas."
       },
       {
         "number": "03",
-        "title": "Vous grandissez ensemble",
-        "body": "À chaque poussée de croissance, la pointure suivante arrive au bon moment. Vous ne cherchez plus."
+        "title": "Les enfants grandissent ? Votre abonnement reste fixe",
+        "body": "Recevez automatiquement la prochaine paire adapatée à votre enfant. Fini le stress de l'essayage en magasin."
       }
     ]
   },
   "why": {
     "eyebrow": "Pourquoi cet abonnement existe",
-    "title": "Le bon soulier, c'est une question de santé.",
+    "title": "La bonne chaussure, c'est d'abord la santé du pied.",
     "body": [
-      "Un pied d'enfant change de pointure plusieurs fois par an. Une chaussure trop petite gêne la marche et la posture, une chaussure trop grande aussi. L'écart est souvent de quelques millimètres.",
-      "Entre les magasins, les tailles qui varient d'une marque à l'autre et le temps qui manque, choisir devient une charge. Nous prenons cette charge, avec le sérieux que mérite la santé du pied qui grandit."
+      "De Zéro à Six ans : les pieds grandissent à une vitesse folle, mais pas votre temps ni votre budget.",
+      "Quels que soient les besoins en chaussures, notre abonnement a tout prévu. Vous avez la quantité de paires nécessaires pour couvrir toute l'année sans vous soucier.",
+      "Car entre la corvée des magasins, ou l'enfant refuse d'essayer correctement la paire, choisir devient une contrainte. Avec le concept des tout petits pieds nous prenons en charge cette difficutlé à votre place."
     ]
   },
   "quality": {
     "eyebrow": "Ce que nous mettons dans chaque paire",
-    "title": "Des choix concrets, pas des promesses vagues.",
+    "title": "Les tout petits pieds, un concept unique.",
     "points": [
       {
-        "title": "Cuir tanné avec soin",
-        "body": "Des cuirs souples et respirants, sélectionnés pour durer une saison de croissance sans blesser le pied."
+        "title": "Cuir pleine fleur",
+        "body": "Des cuirs souples et respirants, spécifiques à la chaussure des premiers pas. La garantie d'un confort absolu."
       },
       {
-        "title": "Selection podologique",
-        "body": "Chaque modèle est validé par notre podologue selon des critères de santé du pied, de galbe et de tenue dans le temps."
+        "title": "Experise du Fabricant depuis plus de 50 ans",
+        "body": "Chaussures fabriquées selon un cahier des charges stricte. Tout est rigoureusement exécuté et contrôlé avant d'être mis sur le marché."
       },
       {
-        "title": "Fabrication responsable",
-        "body": "Une fabrication européenne, dans des ateliers identifiés, avec une traçabilité que nous documenterons à l'ouverture."
+        "title": "Une paire égale deux paires",
+        "body": "Notre semelle évolutive unique, s'adapte à deux tailles pour durer deux fois plus longtemps. Plus de gaspillage pour préserver la planète où vos enfants grandissent."
       }
     ]
   },
@@ -94,17 +95,44 @@
       "postalCode": "75011"
     },
     "childAgeOptions": [
-      { "value": "0-12m", "label": "0 à 12 mois" },
-      { "value": "12-24m", "label": "12 à 24 mois" },
-      { "value": "2-3y", "label": "2 à 3 ans" },
-      { "value": "3-5y", "label": "3 à 5 ans" },
-      { "value": "5-7y", "label": "5 à 7 ans" }
+      {
+        "value": "0-12m",
+        "label": "0 à 12 mois"
+      },
+      {
+        "value": "12-24m",
+        "label": "12 à 24 mois"
+      },
+      {
+        "value": "2-3y",
+        "label": "2 à 3 ans"
+      },
+      {
+        "value": "3-5y",
+        "label": "3 à 5 ans"
+      },
+      {
+        "value": "5-7y",
+        "label": "5 à 7 ans"
+      }
     ],
     "referralOptions": [
-      { "value": "instagram", "label": "Instagram" },
-      { "value": "friend", "label": "Bouche à oreille" },
-      { "value": "search", "label": "Recherche en ligne" },
-      { "value": "other", "label": "Autre" }
+      {
+        "value": "instagram",
+        "label": "Instagram"
+      },
+      {
+        "value": "friend",
+        "label": "Bouche à oreille"
+      },
+      {
+        "value": "search",
+        "label": "Recherche en ligne"
+      },
+      {
+        "value": "other",
+        "label": "Autre"
+      }
     ],
     "referralPlaceholder": "Choisissez une réponse",
     "submit": "Je rejoins la liste",
