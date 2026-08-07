@@ -1,0 +1,223 @@
+---
+---
+
+<div class="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"></span>
+</div>
+
+<style>
+  .cursor {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    /* Difference blend inverts the cursor against whatever is underneath,
+       so it stays visible on dark teal, cream, images, and hover states alike */
+    mix-blend-mode: difference;
+  }
+
+  .cursor__dot,
+  .cursor__ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 999px;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform, width, height, background-color, border-color, opacity;
+  }
+
+  .cursor__dot {
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+  }
+
+  .cursor__ring {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid #ffffff;
+    background: transparent;
+    transition:
+      width 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.2s ease,
+      opacity 0.2s ease;
+    opacity: 0.85;
+  }
+
+  /* Interactive state — ring grows and softly fills */
+  .cursor.is-hover .cursor__ring {
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.25);
+    opacity: 1;
+  }
+
+  .cursor.is-hover .cursor__dot {
+    transform: translate3d(-50%, -50%, 0) scale(0);
+    opacity: 0;
+  }
+
+  /* Pressed */
+  .cursor.is-down .cursor__ring {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Text-editable elements — thin I-beam feel via a slim ring */
+  .cursor.is-text .cursor__ring {
+    width: 4px;
+    height: 24px;
+    border-radius: 2px;
+    background: #ffffff;
+    border-color: transparent;
+    opacity: 0.95;
+  }
+
+  .cursor.is-text .cursor__dot {
+    opacity: 0;
+  }
+
+  /* Hide until we have a first pointer position (avoids top-left flash) */
+  .cursor.is-ready {
+    display: block;
+  }
+
+  /* Fade when cursor leaves the window */
+  .cursor.is-out .cursor__dot,
+  .cursor.is-out .cursor__ring {
+    opacity: 0;
+  }
+
+  /* Only show for real pointers */
+  @media (hover: none), (pointer: coarse) {
+    .cursor {
+      display: none !important;
+    }
+  }
+
+  /* Reduced motion — remove trailing lag by skipping ring easing in JS,
+     and drop transitions here too */
+  @media (prefers-reduced-motion: reduce) {
+    .cursor__dot,
+    .cursor__ring {
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  /* Only hide the native cursor when we're actually driving a custom one */
+  @media (pointer: fine) {
+    html.has-custom-cursor,
+    html.has-custom-cursor body,
+    html.has-custom-cursor a,
+    html.has-custom-cursor button,
+    html.has-custom-cursor input,
+    html.has-custom-cursor textarea,
+    html.has-custom-cursor select,
+    html.has-custom-cursor summary,
+    html.has-custom-cursor label,
+    html.has-custom-cursor [role="button"] {
+      cursor: none;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    if (!fine) return;
+
+    const root = document.documentElement;
+    const cursor = document.querySelector<HTMLElement>(".cursor");
+    const dot = document.querySelector<HTMLElement>(".cursor__dot");
+    const ring = document.querySelector<HTMLElement>(".cursor__ring");
+    if (!cursor || !dot || !ring) return;
+
+    root.classList.add("has-custom-cursor");
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const interactiveSel =
+      'a, button, [role="button"], summary, label, select, [data-cursor="hover"]';
+    const textSel = 'input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]), textarea, [contenteditable="true"]';
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let ringX = 0;
+    let ringY = 0;
+    let ready = false;
+    let raf = 0;
+
+    const setDot = (x: number, y: number) => {
+      dot.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+    };
+    const setRing = (x: number, y: number) => {
+      ring.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+    };
+
+    const tick = () => {
+      // Ease the ring toward the pointer (skip lag when reduced motion is set)
+      const lerp = reduced ? 1 : 0.22;
+      ringX += (mouseX - ringX) * lerp;
+      ringY += (mouseY - ringY) * lerp;
+      setRing(ringX, ringY);
+      raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        if (e.pointerType !== "mouse") return;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        setDot(mouseX, mouseY);
+        if (!ready) {
+          ready = true;
+          ringX = mouseX;
+          ringY = mouseY;
+          setRing(ringX, ringY);
+          cursor.classList.add("is-ready");
+          if (!raf) raf = requestAnimationFrame(tick);
+        }
+        cursor.classList.remove("is-out");
+      },
+      { passive: true },
+    );
+
+    window.addEventListener("pointerdown", () => cursor.classList.add("is-down"));
+    window.addEventListener("pointerup", () => cursor.classList.remove("is-down"));
+
+    document.addEventListener("mouseleave", () => cursor.classList.add("is-out"));
+    document.addEventListener("mouseenter", () => cursor.classList.remove("is-out"));
+
+    // Hover state via event delegation — works for elements added later too
+    const updateHoverState = (target: EventTarget | null) => {
+      if (!(target instanceof Element)) {
+        cursor.classList.remove("is-hover", "is-text");
+        return;
+      }
+      if (target.closest(textSel)) {
+        cursor.classList.add("is-text");
+        cursor.classList.remove("is-hover");
+      } else if (target.closest(interactiveSel)) {
+        cursor.classList.add("is-hover");
+        cursor.classList.remove("is-text");
+      } else {
+        cursor.classList.remove("is-hover", "is-text");
+      }
+    };
+
+    document.addEventListener(
+      "pointerover",
+      (e) => updateHoverState(e.target),
+      { passive: true },
+    );
+
+    // Hide custom cursor and restore native one over iframes / video controls
+    // by detecting focus loss on the window
+    window.addEventListener("blur", () => cursor.classList.add("is-out"));
+    window.addEventListener("focus", () => cursor.classList.remove("is-out"));
+  })();
+</script>

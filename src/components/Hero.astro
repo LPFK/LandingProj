@@ -62,49 +62,17 @@ import copy from "../content/copy.fr.json";
 
   <!-- Visual column -->
   <div
-    style="background:var(--color-accent-soft);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;"
+    style="background:var(--color-accent-soft);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:32px;"
     class="hero-visual hero-visual-anim"
     aria-hidden="true"
   >
-    <svg
-      viewBox="0 0 480 560"
-      width="320"
-      height="373"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <ellipse cx="240" cy="420" rx="180" ry="20" fill="rgba(184,92,42,0.12)" />
-      <path
-        d="M 80 380 Q 80 400 240 405 Q 400 400 400 380 L 380 340 Q 360 330 240 330 Q 120 330 100 340 Z"
-        fill="var(--color-accent)"
-        opacity="0.9"
-      />
-      <path
-        d="M 100 340 Q 110 260 160 220 Q 200 190 240 188 Q 280 186 320 210 Q 370 240 380 340 Z"
-        fill="#C96A38"
-        opacity="0.85"
-      />
-      <path
-        d="M 160 220 Q 200 200 240 200 Q 280 200 310 220 Q 290 210 240 212 Q 190 212 160 220 Z"
-        fill="white"
-        opacity="0.2"
-      />
-      <path
-        d="M 190 250 Q 240 240 290 250 L 285 270 Q 240 260 195 270 Z"
-        fill="rgba(250,246,241,0.5)"
-      />
-      <line x1="200" y1="255" x2="200" y2="295" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
-      <line x1="220" y1="250" x2="220" y2="300" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
-      <line x1="240" y1="248" x2="240" y2="302" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
-      <line x1="260" y1="250" x2="260" y2="300" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
-      <line x1="280" y1="255" x2="280" y2="295" stroke="rgba(250,246,241,0.6)" stroke-width="2" />
-      <circle cx="360" cy="140" r="80" stroke="var(--color-accent)" stroke-width="1.5" opacity="0.3" fill="none" />
-      <circle cx="360" cy="140" r="56" fill="var(--color-accent)" opacity="0.08" />
-      <circle cx="120" cy="160" r="4" fill="var(--color-accent)" opacity="0.3" />
-      <circle cx="134" cy="148" r="2.5" fill="var(--color-accent)" opacity="0.2" />
-    </svg>
+    <div class="hero-widget">
+      <shoe-assembly src="/motion-widget/assets"></shoe-assembly>
+    </div>
   </div>
 </section>
+
+<script is:inline src="/motion-widget/shoe-assembly.js"></script>
 
 <style>
   .trust-item {
@@ -120,6 +88,10 @@ import copy from "../content/copy.fr.json";
     border-radius: 50%;
     background: var(--color-accent);
     flex-shrink: 0;
+  }
+  .hero-widget {
+    width: 100%;
+    max-width: 520px;
   }
   @media (max-width: 768px) {
     .hero-grid {

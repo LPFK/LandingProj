@@ -1,6 +1,7 @@
 ---
 import "../styles/globals.css";
 import copy from "../content/copy.fr.json";
+import CustomCursor from "../components/CustomCursor.astro";
 
 interface Props {
   title?: string;
@@ -58,6 +59,7 @@ const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
     >
       {copy.nav.skipToContent}
     </a>
+    <CustomCursor />
     <slot />
 
     <script>

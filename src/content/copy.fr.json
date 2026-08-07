@@ -40,8 +40,8 @@
       },
       {
         "number": "03",
-        "title": "Les enfants grandissent ? Votre abonnement reste fixe",
-        "body": "Recevez automatiquement la prochaine paire adapatée à votre enfant. Fini le stress de l'essayage en magasin."
+        "title": "Les enfants grandissent ? Mais votre abonnement reste fixe",
+        "body": "Recevez automatiquement la bonne paire adapatée au pied de l'enfant. Fini le stress de l'essayage en magasin."
       }
     ]
   },
@@ -59,8 +59,8 @@
     "title": "Les tout petits pieds, un concept unique.",
     "points": [
       {
-        "title": "Cuir pleine fleur",
-        "body": "Des cuirs souples et respirants, spécifiques à la chaussure des premiers pas. La garantie d'un confort absolu."
+        "title": "Notre concept au service de la qualité et du confort",
+        "body": "Ne pas raté l'apprentissage de la marche est pour nous une priorité absolue et pour vous une garantie de la bonne santé du pied de l'enfant."
       },
       {
         "title": "Experise du Fabricant depuis plus de 50 ans",
@@ -80,7 +80,7 @@
   "waitlist": {
     "eyebrow": "Accès anticipé",
     "title": "Soyez parmi les premiers.",
-    "subtitle": "Nous vous préviendrons à l'ouverture, avec les détails des formules et de la première sélection. Pas de spam, pas de revente de vos données.",
+    "subtitle": "Nous vous préviendrons à l'ouverture du service, avec les détails des formules envisagées et la séléction des modèles préconisés. Pas de spam, pas de revente de vos données.",
     "labels": {
       "firstName": "Prénom",
       "email": "Adresse e-mail",
@@ -112,8 +112,8 @@
         "label": "3 à 5 ans"
       },
       {
-        "value": "5-7y",
-        "label": "5 à 7 ans"
+        "value": "5-6y",
+        "label": "5 à 6 ans"
       }
     ],
     "referralOptions": [
@@ -157,19 +157,23 @@
     "items": [
       {
         "q": "Le service est-il déjà disponible ?",
-        "a": "Pas encore. Nous construisons la liste d'attente pour ouvrir auprès des premières familles intéressées. Vous serez prévenu par e-mail dès l'ouverture."
+        "a": "Bientôt. Nous finalisons les derniers détails pour ouvrir auprès des premières familles intéressées. Vous serez prévenu par e-mail dès l'ouverture de notre service."
       },
       {
-        "q": "Comment la pointure est-elle choisie ?",
-        "a": "À l'inscription, vous indiquez l'âge de l'enfant. Notre podologue affine ensuite la sélection selon les critères de santé du pied. À l'ouverture, nous préciserons le protocole de mesure."
+        "q": "Comment fonctionne l'abonnement ?",
+        "a": "Simplement, vous aurez le choix entre plusieurs formules souples et économiques. les détails seront données sur le site."
+      },
+      {
+        "q": "À propos de pointure et de l'essayage ?",
+        "a": "À l'inscription, vous serez invité à télécharger et imprimer le pédimètre programmé, nous vous indiquerons comment mesurer sans erreur le pied de votre enfant. Vous recevez les chaussures que l'enfant essaye en toute tranquilité à la maison. Si la pointure ne convient pas, nous prenons en charge le retour et le nouvel envoi de la bonne pointure. Gain de temps no stress."
       },
       {
         "q": "Combien de paires par an ?",
-        "a": "La cadence sera adaptée à la croissance de l'enfant. Le détail des formules sera communiqué à l'ouverture du service."
+        "a": "Le concept Les Tout petits pieds c'est particulierment spécialisé pour l'apprentissage des premiers pas : de l'age de 1 ans à 6 ans ce qui concerne les pointures du 19 au 32. Un tableau sera disponible pour connaitre le nombre de paires nécessaire pour chaque tranche d'âge, pour éviter les erreurs de pointure, vous serez prévenus automatiquement par mail pour prendre les mesures du pied de l'enfant et ainsi anticipé l'envoi de la nouvelle paire."
       },
       {
         "q": "Puis-je arrêter quand je veux ?",
-        "a": "Oui. L'abonnement sera sans engagement de durée. Les conditions précises seront disponibles au lancement."
+        "a": "Oui. L'abonnement sera sans engagement contraignant. Les conditions précises seront disponibles au lancement du site."
       },
       {
         "q": "Que faites-vous de mes données ?",
@@ -180,7 +184,7 @@
   "footer": {
     "tagline": "Des chaussures qui grandissent avec votre enfant.",
     "contactLabel": "Nous écrire",
-    "contactEmail": "contact@pazapas.fr",
+    "contactEmail": "contact@lestoutpetitspieds.fr",
     "legal": {
       "privacy": "Politique de confidentialité",
       "mentions": "Mentions légales"
