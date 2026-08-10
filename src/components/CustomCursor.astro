@@ -25,7 +25,9 @@
     left: 0;
     border-radius: 999px;
     transform: translate3d(-50%, -50%, 0);
-    will-change: transform, width, height, background-color, border-color, opacity;
+    /* Only transform updates every frame; other props change on discrete
+       state toggles and do not need a permanent compositor hint. */
+    will-change: transform;
   }
 
   .cursor__dot {

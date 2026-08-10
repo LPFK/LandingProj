@@ -73,6 +73,49 @@ import copy from "../content/copy.fr.json";
 
 <script is:inline src="/motion-widget/shoe-assembly.js"></script>
 
+<script>
+  // Subtle pointer parallax: the shoe drifts a few px toward the cursor.
+  // Fine pointers only, and never when the visitor prefers reduced motion.
+  (function () {
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!fine || reduced) return;
+
+    const section = document.querySelector<HTMLElement>(".hero-grid");
+    const widget = document.querySelector<HTMLElement>(".hero-widget");
+    if (!section || !widget) return;
+
+    const MAX = 10; // px of drift at the edges
+    let tx = 0;
+    let ty = 0;
+    let raf = 0;
+
+    const apply = () => {
+      raf = 0;
+      widget.style.setProperty("--px", tx.toFixed(2));
+      widget.style.setProperty("--py", ty.toFixed(2));
+    };
+
+    section.addEventListener(
+      "pointermove",
+      (e) => {
+        if (e.pointerType !== "mouse") return;
+        const r = section.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width - 0.5) * MAX * 2;
+        ty = ((e.clientY - r.top) / r.height - 0.5) * MAX * 2;
+        if (!raf) raf = requestAnimationFrame(apply);
+      },
+      { passive: true },
+    );
+
+    section.addEventListener("pointerleave", () => {
+      tx = 0;
+      ty = 0;
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
+  })();
+</script>
+
 <style>
   .trust-item {
     display: flex;
@@ -91,7 +134,34 @@ import copy from "../content/copy.fr.json";
   .hero-widget {
     width: 100%;
     max-width: 520px;
+    /* Pointer parallax — JS feeds --px/--py, the shoe drifts a few px toward
+       the cursor. Separate element from the float so the transforms compose. */
+    transform: translate3d(calc(var(--px, 0) * 1px), calc(var(--py, 0) * 1px), 0);
+    transition: transform var(--duration-slow) var(--ease-out);
+    will-change: transform;
   }
+
+  /* Quiet ambient buoyancy on the assembled shoe */
+  .hero-widget :global(shoe-assembly) {
+    display: block;
+    animation: hero-float 6s ease-in-out infinite;
+  }
+
+  @keyframes hero-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-widget {
+      transform: none !important;
+      transition: none !important;
+    }
+    .hero-widget :global(shoe-assembly) {
+      animation: none !important;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero-grid {
       grid-template-columns: 1fr !important;
