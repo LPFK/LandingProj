@@ -1,0 +1,58 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import copy from "../content/copy.fr.json";
+import { confirmWaitlist } from "../lib/supabase";
+import { hashToken } from "../lib/tokens";
+
+// Double opt-in landing page. The tokenised link from the confirmation email
+// points here; we validate the token server-side and render the outcome.
+export const prerender = false;
+
+type State = "success" | "invalid" | "expired" | "error";
+
+const token = Astro.url.searchParams.get("token");
+let state: State = "invalid";
+
+if (token) {
+  const result = await confirmWaitlist(hashToken(token));
+  if (result.ok) state = "success";
+  else if (result.reason === "expired") state = "expired";
+  else if (result.reason === "invalid") state = "invalid";
+  else state = "error";
+}
+
+const c = copy.confirmPage;
+const content: Record<State, { title: string; body: string }> = {
+  success: { title: c.successTitle, body: c.successBody },
+  invalid: { title: c.invalidTitle, body: c.invalidBody },
+  expired: { title: c.expiredTitle, body: c.expiredBody },
+  error: { title: c.errorTitle, body: c.errorBody },
+};
+const { title, body } = content[state];
+---
+
+<Base title={`${title} — Pazapas`}>
+  <Nav />
+  <main
+    id="main"
+    style="max-width:560px;margin:0 auto;padding:120px 24px 160px;text-align:center;min-height:60vh;display:flex;flex-direction:column;justify-content:center;"
+  >
+    <h1
+      style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);margin-bottom:16px;"
+    >
+      {title}
+    </h1>
+    <p style="font-size:1rem;color:var(--color-ink-muted);line-height:1.65;margin-bottom:32px;">
+      {body}
+    </p>
+    <a
+      href="/"
+      style="align-self:center;padding:14px 28px;border-radius:var(--radius-pill);background:var(--color-accent);color:var(--color-ink-on-accent);font-weight:500;text-decoration:none;"
+    >
+      {c.backHome}
+    </a>
+  </main>
+  <Footer />
+</Base>

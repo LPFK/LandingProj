@@ -12,7 +12,7 @@ Static-first Astro landing page in French to build a qualified waitlist. See
 - Supabase (`waitlist` table, RLS) for storage
 - Resend for the confirmation email
 - Plausible (cookieless) for analytics
-- Vercel adapter for the `/api/waitlist` endpoint
+- Node standalone adapter for the `/api/waitlist` endpoint (self-hosted on O2switch cPanel + Passenger)
 
 ## Setup
 

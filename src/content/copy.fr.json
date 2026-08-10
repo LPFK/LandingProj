@@ -192,9 +192,30 @@
     "copyright": "Tous droits réservés."
   },
   "email": {
+    "subject": "Confirmez votre inscription à la liste d'attente Pazapas",
+    "heading": "Confirmez votre inscription",
+    "body": "Merci de votre intérêt pour Pazapas. Pour finaliser votre inscription à la liste d'attente, confirmez votre adresse e-mail en cliquant sur le bouton ci-dessous.",
+    "cta": "Confirmer mon inscription",
+    "fallback": "Si le bouton ne fonctionne pas, copiez ce lien dans votre navigateur :",
+    "expiry": "Ce lien est valable 72 heures.",
+    "ignore": "Si vous n'êtes pas à l'origine de cette demande, ignorez simplement cet e-mail.",
+    "signature": "L'équipe Pazapas"
+  },
+  "emailWelcome": {
     "subject": "Vous êtes sur la liste d'attente Pazapas",
     "heading": "Merci, vous êtes inscrit.",
     "body": "Nous avons bien reçu votre inscription à la liste d'attente. Nous vous écrirons dès que le service ouvre, avec les détails des formules et de la première sélection. À bientôt.",
     "signature": "L'équipe Pazapas"
+  },
+  "confirmPage": {
+    "successTitle": "Inscription confirmée",
+    "successBody": "Merci, votre inscription à la liste d'attente Pazapas est confirmée. Nous vous écrirons dès l'ouverture du service.",
+    "invalidTitle": "Lien invalide",
+    "invalidBody": "Ce lien de confirmation n'est pas valide. Il a peut-être déjà été utilisé.",
+    "expiredTitle": "Lien expiré",
+    "expiredBody": "Ce lien de confirmation a expiré. Merci de vous réinscrire pour en recevoir un nouveau.",
+    "errorTitle": "Une erreur est survenue",
+    "errorBody": "Nous n'avons pas pu confirmer votre inscription pour le moment. Merci de réessayer plus tard.",
+    "backHome": "Retour à l'accueil"
   }
 }

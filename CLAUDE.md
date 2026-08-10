@@ -31,11 +31,11 @@ Styling | Tailwind CSS v4, custom design tokens defined in `tailwind.config.mjs`
 Fonts | self-hosted via `fontsource` to avoid Google Fonts calls.
 Animations | `motion` (Framer Motion successor) inside the interactive island only. Use sparingly.
 Icons | `lucide-astro`.
-Form handling | client-side validation with `zod`, POST to a serverless function.
+Form handling | client-side validation with `zod`, POST to the `/api/waitlist` endpoint. The endpoint enforces per-IP rate limiting, a Cloudflare Turnstile bot check, and server-side `zod` re-validation before storing.
 Waitlist storage | **Supabase** table `waitlist` with row-level security. Rationale: SQL-shaped storage that we can query with Python later, free tier fits early volume, less lock-in than Mailchimp.
-Confirmation email | Resend, triggered from the same serverless function on successful insert.
+Confirmation email | Resend. **Single opt-in is active** (`DOUBLE_OPTIN = false` in `src/pages/api/waitlist.ts`): the signup is stored as confirmed and gets a welcome email with no link. Double opt-in (hashed 72h token → `/confirmer` link → confirmed) is implemented and kept behind that flag for easy re-enable.
 Analytics | Plausible, self-hosted or cloud, cookieless.
-Hosting | Vercel or Netlify.
+Hosting | O2switch (cPanel shared hosting, Node app served via Phusion Passenger, `@astrojs/node` standalone adapter).
 
 Alternate stacks the operator may request | plain HTML/CSS/JS + Vite, or Next.js 15 App Router. If asked, migrate the whole file structure and update this section.
 

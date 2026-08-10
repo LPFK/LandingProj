@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { waitlistSchema } from "../lib/validation";
 import copy from "../content/copy.fr.json";
 
@@ -7,6 +7,22 @@ type Errors = Partial<Record<Field, string>>;
 
 const AGE_OPTIONS = copy.waitlist.childAgeOptions;
 const REFERRAL_OPTIONS = copy.waitlist.referralOptions;
+
+// Public site key is inlined at build time. When it is absent (local dev with
+// no Turnstile configured) the widget is not rendered and the server skips the
+// bot check, so the form still works end to end.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | undefined;
+
+interface TurnstileApi {
+  render: (el: HTMLElement, opts: { sitekey: string; theme?: string }) => string;
+  getResponse: (id?: string) => string | undefined;
+  reset: (id?: string) => void;
+}
+declare global {
+  interface Window {
+    turnstile?: TurnstileApi;
+  }
+}
 
 export default function WaitlistForm() {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +33,25 @@ export default function WaitlistForm() {
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+
+  // Explicitly render the Turnstile widget once its script has loaded. Explicit
+  // render is more reliable than implicit auto-render for an element mounted by
+  // React after the script tag.
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return;
+    const timer = setInterval(() => {
+      if (window.turnstile && turnstileRef.current && turnstileWidgetId.current === null) {
+        turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: "auto",
+        });
+        clearInterval(timer);
+      }
+    }, 200);
+    return () => clearInterval(timer);
+  }, []);
 
   function toggleAge(value: string) {
     setAges((prev) =>
@@ -48,21 +83,34 @@ export default function WaitlistForm() {
       return;
     }
 
+    // Require a completed bot check when Turnstile is active.
+    let turnstileToken: string | undefined;
+    if (TURNSTILE_SITE_KEY) {
+      turnstileToken = window.turnstile?.getResponse(turnstileWidgetId.current ?? undefined);
+      if (!turnstileToken) {
+        setStatus("error");
+        return;
+      }
+    }
+
     setStatus("submitting");
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(parsed.data),
+        body: JSON.stringify({ ...parsed.data, turnstileToken }),
         signal: AbortSignal.timeout(12000),
       });
       if (res.ok) {
         setStatus("success");
       } else {
         setStatus("error");
+        // Let the visitor retry the challenge on failure.
+        if (TURNSTILE_SITE_KEY) window.turnstile?.reset(turnstileWidgetId.current ?? undefined);
       }
     } catch {
       setStatus("error");
+      if (TURNSTILE_SITE_KEY) window.turnstile?.reset(turnstileWidgetId.current ?? undefined);
     }
   }
 
@@ -241,6 +289,9 @@ export default function WaitlistForm() {
           </p>
         )}
       </div>
+
+      {/* Cloudflare Turnstile widget (rendered only when configured) */}
+      {TURNSTILE_SITE_KEY && <div ref={turnstileRef} />}
 
       {status === "error" && (
         <p
