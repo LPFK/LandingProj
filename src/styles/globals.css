@@ -366,6 +366,168 @@ html[data-theme="dark"] {
   }
 }
 
+/* === Form interactions ==================================================== */
+
+/* Inputs get a real, visible focus state (accent border + soft ring) instead
+   of a bare outline:none, which is a keyboard-accessibility requirement. */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-input);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 0.9375rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.form-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+.form-input.has-error {
+  border-color: #c0392b;
+}
+
+.form-input.has-error:focus {
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.18);
+}
+
+/* Age-range chips — pop in on select, press in on tap */
+.age-chip {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-ink-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-spring);
+}
+
+.age-chip:hover {
+  border-color: var(--color-accent-soft);
+}
+
+.age-chip[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-ink-on-accent);
+  transform: scale(1.05);
+}
+
+.age-chip:active {
+  transform: scale(0.96);
+}
+
+/* Submit spinner — the one continuous loader, kept even under reduced motion
+   because it communicates active system status. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--color-ink-on-accent) 35%, transparent);
+  border-top-color: var(--color-ink-on-accent);
+  animation: spin 0.7s linear infinite;
+}
+
+/* Success panel — scales in, checkmark draws itself */
+@keyframes success-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes check-draw {
+  from {
+    stroke-dashoffset: 30;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-panel {
+  animation: success-pop var(--duration-slow) var(--ease-spring) both;
+}
+
+.success-badge {
+  animation: success-pop var(--duration-slow) var(--ease-spring) 80ms both;
+}
+
+.success-check {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: check-draw var(--duration-normal) var(--ease-out) 260ms forwards;
+}
+
+/* Error shake — draws the eye once, gently */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+.shake {
+  animation: shake var(--duration-slow) var(--ease-in-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .form-input,
+  .age-chip {
+    transition: none !important;
+  }
+
+  .age-chip[aria-pressed="true"],
+  .age-chip:active {
+    transform: none !important;
+  }
+
+  /* Keep the loader spinning (active status), but calmer */
+  .spinner {
+    animation: spin 1s linear infinite !important;
+  }
+
+  .success-panel,
+  .success-badge {
+    animation: none !important;
+  }
+
+  .success-check {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  .shake {
+    animation: none !important;
+  }
+}
+
 /* Focus visible - accessible but unobtrusive */
 :focus-visible {
   outline: 2px solid var(--color-accent);

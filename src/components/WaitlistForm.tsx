@@ -33,6 +33,8 @@ export default function WaitlistForm() {
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  // Bumped on each error so the alert banner remounts and replays its shake.
+  const [errorNonce, setErrorNonce] = useState(0);
   const turnstileRef = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | null>(null);
 
@@ -54,9 +56,40 @@ export default function WaitlistForm() {
   }, []);
 
   function toggleAge(value: string) {
-    setAges((prev) =>
-      prev.includes(value) ? prev.filter((a) => a !== value) : [...prev, value],
-    );
+    const next = ages.includes(value) ? ages.filter((a) => a !== value) : [...ages, value];
+    setAges(next);
+    // Age is chosen by tapping, so re-check the moment a selection exists.
+    if (errors.child_age_ranges) revalidate("child_age_ranges", { child_age_ranges: next });
+  }
+
+  function currentPayload() {
+    return {
+      first_name: firstName,
+      email,
+      child_age_ranges: ages,
+      postal_code: postalCode || undefined,
+      referral_source: referral || undefined,
+      consent_marketing: consent,
+    };
+  }
+
+  // Validate a single field (on blur, or live once it already shows an error).
+  // Overrides let callers pass the just-changed value before state commits.
+  function revalidate(field: Field, overrides: Record<string, unknown> = {}) {
+    const parsed = waitlistSchema.safeParse({ ...currentPayload(), ...overrides });
+    setErrors((prev) => {
+      const nextErrors = { ...prev };
+      const issue = parsed.success
+        ? undefined
+        : parsed.error.issues.find((i) => i.path[0] === field);
+      if (issue) {
+        nextErrors[field] =
+          copy.waitlist.errors[field as keyof typeof copy.waitlist.errors] ?? issue.message;
+      } else {
+        delete nextErrors[field];
+      }
+      return nextErrors;
+    });
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -89,6 +122,7 @@ export default function WaitlistForm() {
       turnstileToken = window.turnstile?.getResponse(turnstileWidgetId.current ?? undefined);
       if (!turnstileToken) {
         setStatus("error");
+        setErrorNonce((n) => n + 1);
         return;
       }
     }
@@ -105,19 +139,22 @@ export default function WaitlistForm() {
         setStatus("success");
       } else {
         setStatus("error");
+        setErrorNonce((n) => n + 1);
         // Let the visitor retry the challenge on failure.
         if (TURNSTILE_SITE_KEY) window.turnstile?.reset(turnstileWidgetId.current ?? undefined);
       }
     } catch {
       setStatus("error");
+      setErrorNonce((n) => n + 1);
       if (TURNSTILE_SITE_KEY) window.turnstile?.reset(turnstileWidgetId.current ?? undefined);
     }
   }
 
   if (status === "success") {
     return (
-      <div style={{ textAlign: "center", padding: "48px 0" }}>
+      <div className="success-panel" style={{ textAlign: "center", padding: "48px 0" }}>
         <div
+          className="success-badge"
           style={{
             width: 56,
             height: 56,
@@ -130,7 +167,7 @@ export default function WaitlistForm() {
           }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12l5 5L20 7" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path className="success-check" d="M5 12l5 5L20 7" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
         <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 600, letterSpacing: "-0.02em", color: "var(--color-ink)", marginBottom: 12 }}>
@@ -155,10 +192,14 @@ export default function WaitlistForm() {
           <input
             type="text"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+              if (errors.first_name) revalidate("first_name", { first_name: e.target.value });
+            }}
+            onBlur={() => revalidate("first_name")}
             placeholder={copy.waitlist.placeholders.firstName}
             autoComplete="given-name"
-            style={inputStyle(!!errors.first_name)}
+            className={`form-input${errors.first_name ? " has-error" : ""}`}
           />
         </Field>
 
@@ -170,11 +211,15 @@ export default function WaitlistForm() {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (errors.email) revalidate("email", { email: e.target.value });
+            }}
+            onBlur={() => revalidate("email")}
             placeholder={copy.waitlist.placeholders.email}
             autoComplete="email"
             inputMode="email"
-            style={inputStyle(!!errors.email)}
+            className={`form-input${errors.email ? " has-error" : ""}`}
           />
         </Field>
       </div>
@@ -194,18 +239,7 @@ export default function WaitlistForm() {
                 type="button"
                 onClick={() => toggleAge(opt.value)}
                 aria-pressed={selected}
-                style={{
-                  padding: "8px 16px",
-                  borderRadius: "var(--radius-pill)",
-                  border: `1.5px solid ${selected ? "var(--color-accent)" : "var(--color-border)"}`,
-                  background: selected ? "var(--color-accent)" : "transparent",
-                  color: selected ? "var(--color-ink-on-accent)" : "var(--color-ink-muted)",
-                  fontSize: "0.875rem",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  transition: "all 0.15s",
-                  fontFamily: "var(--font-body)",
-                }}
+                className="age-chip"
               >
                 {opt.label}
               </button>
@@ -220,11 +254,15 @@ export default function WaitlistForm() {
           <input
             type="text"
             value={postalCode}
-            onChange={(e) => setPostalCode(e.target.value)}
+            onChange={(e) => {
+              setPostalCode(e.target.value);
+              if (errors.postal_code) revalidate("postal_code", { postal_code: e.target.value || undefined });
+            }}
+            onBlur={() => revalidate("postal_code")}
             placeholder={copy.waitlist.placeholders.postalCode}
             inputMode="numeric"
             maxLength={5}
-            style={inputStyle(!!errors.postal_code)}
+            className={`form-input${errors.postal_code ? " has-error" : ""}`}
           />
         </Field>
 
@@ -232,7 +270,8 @@ export default function WaitlistForm() {
           <select
             value={referral}
             onChange={(e) => setReferral(e.target.value)}
-            style={{ ...inputStyle(false), color: referral ? "var(--color-ink)" : "var(--color-ink-muted)" }}
+            className="form-input"
+            style={{ color: referral ? "var(--color-ink)" : "var(--color-ink-muted)" }}
           >
             <option value="">{copy.waitlist.referralPlaceholder}</option>
             {REFERRAL_OPTIONS.map((opt) => (
@@ -256,7 +295,10 @@ export default function WaitlistForm() {
             <input
               type="checkbox"
               checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
+              onChange={(e) => {
+                setConsent(e.target.checked);
+                if (errors.consent_marketing) revalidate("consent_marketing", { consent_marketing: e.target.checked });
+              }}
               style={{ position: "absolute", opacity: 0, width: 20, height: 20, cursor: "pointer" }}
             />
             <div
@@ -295,7 +337,9 @@ export default function WaitlistForm() {
 
       {status === "error" && (
         <p
+          key={errorNonce}
           role="alert"
+          className="shake"
           style={{
             padding: "12px 16px",
             borderRadius: "var(--radius-sm)",
@@ -311,7 +355,12 @@ export default function WaitlistForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
+        className={status === "submitting" ? undefined : "btn-primary"}
         style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 10,
           padding: "16px 32px",
           borderRadius: "var(--radius-pill)",
           background: status === "submitting" ? "var(--color-ink-muted)" : "var(--color-accent)",
@@ -321,10 +370,10 @@ export default function WaitlistForm() {
           border: "none",
           cursor: status === "submitting" ? "not-allowed" : "pointer",
           fontFamily: "var(--font-body)",
-          transition: "background 0.15s",
           alignSelf: "flex-start",
         }}
       >
+        {status === "submitting" && <span className="spinner" aria-hidden="true" />}
         {status === "submitting" ? copy.waitlist.submitting : copy.waitlist.submit}
       </button>
     </form>
@@ -356,19 +405,4 @@ function Field({
       )}
     </div>
   );
-}
-
-function inputStyle(hasError: boolean): React.CSSProperties {
-  return {
-    width: "100%",
-    padding: "12px 16px",
-    borderRadius: "var(--radius-input)",
-    border: `1.5px solid ${hasError ? "#C0392B" : "var(--color-border)"}`,
-    background: "var(--color-surface)",
-    color: "var(--color-ink)",
-    fontSize: "0.9375rem",
-    fontFamily: "var(--font-body)",
-    outline: "none",
-    transition: "border-color 0.15s",
-  };
 }
