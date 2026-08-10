@@ -29,6 +29,25 @@
   /* Shadow */
   --shadow-card: 0 8px 32px rgba(26, 22, 18, 0.07);
   --shadow-lift: 0 16px 48px rgba(26, 22, 18, 0.12);
+
+  /* Motion — single source of truth for all timing and easing.
+     transform/opacity only; ease-out for enter, ease-in for exit. */
+  --duration-instant: 120ms;
+  --duration-fast: 180ms;
+  --duration-normal: 280ms;
+  --duration-slow: 480ms;
+  --duration-slower: 720ms;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Reveal travel + interaction lift distances */
+  --reveal-shift: 28px;
+  --lift-sm: -2px;
+  --lift-md: -4px;
+  --lift-lg: -8px;
 }
 
 *,
@@ -118,7 +137,7 @@ html[data-theme="dark"] {
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(var(--reveal-shift));
   }
 
   to {
@@ -137,69 +156,71 @@ html[data-theme="dark"] {
   }
 }
 
-/* Scroll-triggered — JS adds .in-view via IntersectionObserver */
+/* Scroll-triggered reveals — JS adds .in-view via IntersectionObserver.
+   Default (no value) rises from below. Directional and scale variants let a
+   section choreograph its parts. transform/opacity only. */
 [data-animate] {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(var(--reveal-shift));
   transition:
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+[data-animate="left"] {
+  transform: translateX(calc(-1 * var(--reveal-shift)));
+}
+
+[data-animate="right"] {
+  transform: translateX(var(--reveal-shift));
+}
+
+[data-animate="scale"] {
+  transform: scale(0.94);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-spring);
+}
+
+[data-animate="fade"] {
+  transform: none;
 }
 
 [data-animate].in-view {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  /* GPU layer no longer needed once the reveal has settled */
+  will-change: auto;
 }
 
-[data-delay="1"] {
-  transition-delay: 80ms;
-}
-
-[data-delay="2"] {
-  transition-delay: 160ms;
-}
-
-[data-delay="3"] {
-  transition-delay: 240ms;
-}
-
-[data-delay="4"] {
-  transition-delay: 320ms;
-}
-
-[data-delay="5"] {
-  transition-delay: 400ms;
-}
+/* Stagger scale — 70ms steps, finer control for expressive cascades */
+[data-delay="1"] { transition-delay: 70ms; }
+[data-delay="2"] { transition-delay: 140ms; }
+[data-delay="3"] { transition-delay: 210ms; }
+[data-delay="4"] { transition-delay: 280ms; }
+[data-delay="5"] { transition-delay: 350ms; }
+[data-delay="6"] { transition-delay: 420ms; }
+[data-delay="7"] { transition-delay: 490ms; }
 
 /* Hero — runs immediately on load, no observer needed */
 .hero-anim {
-  animation: fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-up var(--duration-slower) var(--ease-out) both;
 }
 
-.hero-anim-d1 {
-  animation-delay: 100ms;
-}
-
-.hero-anim-d2 {
-  animation-delay: 220ms;
-}
-
-.hero-anim-d3 {
-  animation-delay: 370ms;
-}
-
-.hero-anim-d4 {
-  animation-delay: 520ms;
-}
+.hero-anim-d1 { animation-delay: 100ms; }
+.hero-anim-d2 { animation-delay: 220ms; }
+.hero-anim-d3 { animation-delay: 370ms; }
+.hero-anim-d4 { animation-delay: 520ms; }
 
 .hero-visual-anim {
-  animation: fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 150ms both;
+  animation: fade-in var(--duration-slower) var(--ease-out) 150ms both;
 }
 
 /* FAQ content height transition */
 .faq-content {
   overflow: hidden;
-  transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: height var(--duration-normal) var(--ease-out);
 }
 
 /* Respect reduced motion — show everything immediately, no transitions */
@@ -213,6 +234,7 @@ html[data-theme="dark"] {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+    will-change: auto !important;
   }
 
   .faq-content {
