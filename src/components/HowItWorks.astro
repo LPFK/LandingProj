@@ -24,9 +24,11 @@ import copy from "../content/copy.fr.json";
         copy.howItWorks.steps.map((step, i) => (
           <div
             data-animate data-delay={String(i + 1)}
+            class="step-card"
             style={`padding:48px 40px;background:var(--color-bg);${i === 0 ? "border-radius:var(--radius-card) 0 0 var(--radius-card);" : i === 2 ? "border-radius:0 var(--radius-card) var(--radius-card) 0;" : ""}`}
           >
             <span
+              class="step-number"
               style="display:block;font-family:var(--font-display);font-size:3rem;font-weight:600;color:var(--color-accent-soft);letter-spacing:-0.04em;margin-bottom:24px;line-height:1;"
             >
               {step.number}

@@ -23,26 +23,23 @@ const year = new Date().getFullYear();
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;" class="footer-links">
       <a
         href={`mailto:${copy.footer.contactEmail}`}
-        style="font-size:0.875rem;opacity:0.65;color:inherit;text-decoration:none;transition:opacity 0.15s;"
-        onmouseover="this.style.opacity='1'"
-        onmouseout="this.style.opacity='0.65'"
+        class="footer-contact"
+        style="font-size:0.875rem;opacity:0.65;color:inherit;text-decoration:none;"
       >
         {copy.footer.contactLabel}
       </a>
       <div style="display:flex;gap:24px;">
         <a
           href="/politique-de-confidentialite"
-          style="font-size:0.8125rem;opacity:0.5;color:inherit;text-decoration:none;transition:opacity 0.15s;"
-          onmouseover="this.style.opacity='0.85'"
-          onmouseout="this.style.opacity='0.5'"
+          class="footer-legal"
+          style="font-size:0.8125rem;opacity:0.5;color:inherit;text-decoration:none;"
         >
           {copy.footer.legal.privacy}
         </a>
         <a
           href="/mentions-legales"
-          style="font-size:0.8125rem;opacity:0.5;color:inherit;text-decoration:none;transition:opacity 0.15s;"
-          onmouseover="this.style.opacity='0.85'"
-          onmouseout="this.style.opacity='0.5'"
+          class="footer-legal"
+          style="font-size:0.8125rem;opacity:0.5;color:inherit;text-decoration:none;"
         >
           {copy.footer.legal.mentions}
         </a>
@@ -55,12 +52,28 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
+  .footer-contact,
+  .footer-legal {
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+  .footer-contact:hover {
+    opacity: 1 !important;
+  }
+  .footer-legal:hover {
+    opacity: 0.85 !important;
+  }
   @media (max-width: 640px) {
     .footer-grid {
       grid-template-columns: 1fr !important;
     }
     .footer-links {
       align-items: flex-start !important;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .footer-contact,
+    .footer-legal {
+      transition: none;
     }
   }
 </style>

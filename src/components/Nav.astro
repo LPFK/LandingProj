@@ -11,9 +11,8 @@ import copy from "../content/copy.fr.json";
     <!-- Brand → home -->
     <a
       href="/"
-      style="font-family:var(--font-display);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);text-decoration:none;transition:opacity 0.15s;"
-      onmouseover="this.style.opacity='0.7'"
-      onmouseout="this.style.opacity='1'"
+      class="brand-link"
+      style="font-family:var(--font-display);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--color-ink);text-decoration:none;"
     >
       {copy.nav.brand}
     </a>
@@ -22,10 +21,9 @@ import copy from "../content/copy.fr.json";
       <!-- Theme toggle -->
       <button
         id="theme-toggle"
+        class="icon-btn"
         aria-label="Basculer le thème clair/sombre"
-        style="width:36px;height:36px;border-radius:var(--radius-pill);border:1px solid var(--color-border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--color-ink-muted);transition:border-color 0.15s,color 0.15s,background 0.15s;"
-        onmouseover="this.style.borderColor='var(--color-accent)';this.style.color='var(--color-accent)'"
-        onmouseout="this.style.borderColor='var(--color-border)';this.style.color='var(--color-ink-muted)'"
+        style="width:36px;height:36px;border-radius:var(--radius-pill);border:1px solid var(--color-border);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--color-ink-muted);"
       >
         <!-- Sun icon (shown in dark mode) -->
         <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -41,9 +39,8 @@ import copy from "../content/copy.fr.json";
       <!-- CTA -->
       <a
         href="/#liste"
-        style="display:inline-flex;align-items:center;background:var(--color-accent);color:var(--color-ink-on-accent);font-size:0.875rem;font-weight:500;padding:10px 20px;border-radius:var(--radius-pill);text-decoration:none;transition:background 0.15s;"
-        onmouseover="this.style.background='var(--color-accent-deep)'"
-        onmouseout="this.style.background='var(--color-accent)'"
+        class="btn-primary"
+        style="font-size:0.875rem;font-weight:500;padding:10px 20px;"
       >
         {copy.nav.cta}
       </a>

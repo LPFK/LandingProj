@@ -242,6 +242,130 @@ html[data-theme="dark"] {
   }
 }
 
+/* === Micro-interactions =================================================== */
+
+/* Primary pill CTA — lift on hover, press on active. The elevated shadow lives
+   on a pseudo-element and fades via opacity, so no per-frame box-shadow repaint.
+   Sizing (padding/font-size) stays on the element so existing CTAs keep theirs. */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: var(--color-ink-on-accent);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow-lift);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-deep);
+  transform: translateY(var(--lift-sm));
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+  transition-duration: var(--duration-instant);
+}
+
+/* Icon button (theme toggle) — border and color warm up on hover */
+.icon-btn {
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.icon-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+  transition-duration: var(--duration-instant);
+}
+
+/* Brand wordmark — quiet fade on hover */
+.brand-link {
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.brand-link:hover {
+  opacity: 0.7;
+}
+
+/* Interactive card — lifts toward the reader on hover. Single-card hover, so
+   the box-shadow transition cost is negligible. */
+.card-interactive {
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out);
+}
+
+.card-interactive:hover {
+  transform: translateY(var(--lift-md));
+  box-shadow: var(--shadow-lift);
+  border-color: var(--color-accent-soft);
+}
+
+/* How-it-works step — the oversized number warms and springs up on hover.
+   The steps form a joined panel, so the card itself does not lift. */
+.step-number {
+  transition:
+    color var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-spring);
+}
+
+.step-card:hover .step-number {
+  color: var(--color-accent);
+  transform: translateY(-6px);
+}
+
+/* Motion opt-out — micro-interactions collapse to instant state changes */
+@media (prefers-reduced-motion: reduce) {
+
+  .btn-primary,
+  .btn-primary::after,
+  .icon-btn,
+  .brand-link,
+  .card-interactive,
+  .step-number {
+    transition: none !important;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:active,
+  .icon-btn:active,
+  .card-interactive:hover,
+  .step-card:hover .step-number {
+    transform: none !important;
+  }
+}
+
 /* Focus visible - accessible but unobtrusive */
 :focus-visible {
   outline: 2px solid var(--color-accent);
