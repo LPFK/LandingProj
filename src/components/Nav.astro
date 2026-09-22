@@ -54,11 +54,13 @@ import copy from "../content/copy.fr.json";
 </style>
 
 <script>
+  // Light is the default: only an explicit data-theme="dark" counts as dark.
+  // This must agree with globals.css, which no longer derives the theme from
+  // prefers-color-scheme. Consulting the OS here instead would show the wrong
+  // icon on a dark-OS first visit, and make the first click a no-op (it would
+  // compute "light", which is what the page already renders).
   function isDark(): boolean {
-    const saved = document.documentElement.getAttribute("data-theme");
-    if (saved === "dark") return true;
-    if (saved === "light") return false;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return document.documentElement.getAttribute("data-theme") === "dark";
   }
 
   function updateIcon() {
@@ -86,7 +88,4 @@ import copy from "../content/copy.fr.json";
 
   // Sync icon on load
   updateIcon();
-
-  // Sync icon if system preference changes (e.g. OS switches to dark at sunset)
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateIcon);
 </script>

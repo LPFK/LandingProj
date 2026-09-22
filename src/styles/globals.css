@@ -62,6 +62,10 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  /* Without this the UA paints scrollbars and native form controls from the
+     visitor's OS preference, so a dark-OS visitor got dark widgets on our light
+     page. Overridden to `dark` under [data-theme="dark"] below. */
+  color-scheme: light;
 }
 
 body {
@@ -97,26 +101,20 @@ h4 {
   }
 }
 
-/* Dark mode token overrides — blue/teal + brown */
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --color-bg: #072929;
-    --color-surface: #0D2B2B;
-    --color-ink: #705A4B;
-    --color-ink-muted: #ADA199;
-    --color-accent: #B3D3D5;
-    --color-accent-warm: #C96A38;
-    --color-accent-soft: #D1E4E6;
-    --color-accent-deep: #719FA3;
-    --color-success: #2E6B4F;
-    --color-border: #E4D8CE;
-    --color-ink-on-accent: #FAF6F1;
-    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --shadow-lift: 0 16px 48px rgba(0, 0, 0, 0.4);
-  }
-}
+/* Light is the default on every first visit, whatever the visitor's OS is set
+   to. Dark is opt-in: it applies only once the Nav toggle writes
+   data-theme="dark" (persisted in localStorage, re-applied before first paint
+   by the inline script in Base.astro).
+
+   A `@media (prefers-color-scheme: dark)` block used to sit here and auto-apply
+   on dark-OS machines. It was removed rather than repaired: it overrode
+   bg/surface but kept the light theme's --color-ink (#705A4B) and
+   --color-border (#E4D8CE), so first-time visitors on a dark OS got brown text
+   on near-black teal at 2.4:1 contrast with bright cream borders — neither
+   light nor dark. */
 
 html[data-theme="dark"] {
+  color-scheme: dark;
   --color-bg: #2d1f15;
   --color-surface: #3f3126;
   --color-ink: #97d1d6;
