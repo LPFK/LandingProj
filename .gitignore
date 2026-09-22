@@ -14,3 +14,6 @@ dist/
 # Editor / OS
 .DS_Store
 *.log
+
+# Vercel build output (demo branch)
+.vercel/

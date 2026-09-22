@@ -30,7 +30,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content="website" />
-    <meta name="robots" content="index, follow" />
+    <!-- DEMO BRANCH ONLY — keeps the client preview out of search results so
+         it never competes with the real domain. master sends "index, follow". -->
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <!-- Anti-FOUC: apply saved theme before first paint -->
